@@ -1,0 +1,1 @@
+# KenticoCloudTypescript2SDK
