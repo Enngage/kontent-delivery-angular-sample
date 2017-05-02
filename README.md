@@ -1,1 +1,1 @@
-# KenticoCloudTypescript2SDK
+# Kentico Cloud Angular 2 sample app
