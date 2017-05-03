@@ -11,8 +11,13 @@ import { AppComponent } from './app.component';
 // main components
 import { NotFoundComponent } from './modules/shared/not-found.component';
 
+// kentico cloud
+import { KenticoCloudModule } from './kentico-cloud/kentico-cloud.module';
+
 // custom modules
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { ServicesModule } from './services/services.module';
+
 
 @NgModule({
   declarations: [
@@ -37,8 +42,12 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
     FormsModule,
     HttpModule,
 
+    // kentico cloud
+    KenticoCloudModule,
+
     // Custom modules
-    DashboardModule
+    DashboardModule,
+    ServicesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

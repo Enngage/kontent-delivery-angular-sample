@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { MultipleResponse } from './multiple-response.class';
-import { SingleResponse } from './single-response.class';
+import { ResponseSingle } from '../responses/response-single.class';
+import { ResponseMultiple } from '../responses/response-multiple.class';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class RepositoryService {
+export class KenticoCloudService {
 
     private apiUrl = "https://deliver.kenticocloud.com";
     private projectId = "b52fa0db-84ec-4310-8f7c-3b94ed06644d";
@@ -29,7 +29,7 @@ export class RepositoryService {
                 url = url + parameters.join("&");
             }
         }
-
+        
         return url;
     }
 
@@ -38,36 +38,36 @@ export class RepositoryService {
         return Promise.reject(error.message || error);
     }
 
-    getItems(type: string, options?: any): Promise<MultipleResponse> {
+    getItems(type: string, options?: any): Promise<ResponseMultiple> {
         var url = this.getBaseUrl() + "/items?system.type=" + type;
 
         url = this.addOptionsToUrl(url, options);
 
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json() as MultipleResponse)
+            .then(response => response.json() as ResponseMultiple)
             .catch(this.handleError);
     }
 
-    getItem(type: string, codename: string, options?: any): Promise<SingleResponse> {
+    getItemByCodeName(type: string, codename: string, options?: any): Promise<ResponseSingle> {
         var url = this.getBaseUrl() + "/items/" + codename;
 
         url = this.addOptionsToUrl(url, options);
 
         return this.http.get(url)
             .toPromise()
-            .then(response => (response.json() as SingleResponse))
+            .then(response => (response.json() as ResponseSingle))
             .catch(this.handleError);
     }
 
-     getItemById(type: string, id: string,options?: any): Promise<SingleResponse> {
+     getItemById(type: string, id: string,options?: any): Promise<ResponseSingle> {
         var url = this.getBaseUrl() + "/items?system.type=" + type + "&system.id=" + id + "&limit=1";
 
         url = this.addOptionsToUrl(url, options);
 
         return this.http.get(url)
             .toPromise()
-            .then(response => new SingleResponse(response.json().items[0], response.json().modular_content))
+            .then(response => new ResponseSingle(response.json().items[0], response.json().modular_content))
             .catch(this.handleError);
     }
 }
