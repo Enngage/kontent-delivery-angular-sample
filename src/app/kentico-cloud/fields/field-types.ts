@@ -1,14 +1,27 @@
+import { FieldType } from './field-type.class';
 
-export class BaseField {
+export interface IField {
     name: string;
-    type: string;
+    type: FieldType;
     value: any;
 }
 
-export class TextField extends BaseField {
+export class TextField implements IField {
     constructor(
         public name: string,
-        public type: string,
-        public text: string
-    ) { super()};
+        public type: FieldType,
+        public value: any
+    ) {};
+
+    public text = this.value;
+}
+
+export class ModularContent<T> implements IField {
+    constructor(
+        public name: string,
+        public type: FieldType,
+        public value: any
+    ) {};
+
+    public item: T;
 }

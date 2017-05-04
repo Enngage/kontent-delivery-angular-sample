@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { KenticoCloudService } from './services/kentico-cloud.service';
-import { KenticoCloudBaseService } from './services/kentico-cloud-base.service';
+import { KenticoCloudItemsService } from './services/kentico-cloud-items.service';
 
 @NgModule({
     imports: [
@@ -9,7 +9,7 @@ import { KenticoCloudBaseService } from './services/kentico-cloud-base.service';
     ],
     providers: [
         KenticoCloudService, 
-        KenticoCloudBaseService
+        KenticoCloudItemsService
         ],
 })
 export class KenticoCloudModule { }

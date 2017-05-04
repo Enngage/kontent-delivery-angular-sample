@@ -2,6 +2,11 @@
 
 <h2>Code examples</h2>
 
-<ul>
-    <li *ngFor="let codeExample of codeExamples" >{{codeExample.system.codename}} - {{codeExample.title.text}}</li>
-</ul>
+<div>
+    <div *ngFor="let codeExample of codeExamples">
+        <h3 style="color: blueviolet"> {{codeExample.system.codename}}</h3>
+        <p><strong>Title:</strong> {{codeExample.title.text}}</p>
+        <p><strong>Author (raw):</strong> {{codeExample.author.elements.name.value}}</p>
+        <p><strong>Author (strongly-typed):</strong> {{codeExample.author.name.text}}</p>
+    </div>
+</div>

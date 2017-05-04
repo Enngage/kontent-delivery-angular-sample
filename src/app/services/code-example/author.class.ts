@@ -1,14 +1,12 @@
 import { ISystem } from '../../kentico-cloud/interfaces/isystem.interface';
 import { IItem } from '../../kentico-cloud/interfaces/iitem.interface';
 import { TextField } from '../../kentico-cloud/fields/field-types';
-import { Author } from './author.class';
 
-export class CodeExample implements IItem<CodeExample> { 
+export class Author implements IItem<Author> { 
 
   constructor(
     public system: ISystem,
-    public title: TextField,
-    public author: Author
+    public name: TextField,
   ) {}
 }
 
