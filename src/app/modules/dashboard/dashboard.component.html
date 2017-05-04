@@ -1,1 +1,7 @@
-<div>Dashboard</div>
+<h1>Dashboard</h1>
+
+<h2>Code examples</h2>
+
+<ul>
+    <li *ngFor="let codeExample of codeExamples" >{{codeExample.system.codename}} - {{codeExample.title.text}}</li>
+</ul>

@@ -1,10 +1,10 @@
 import { ISystem } from '../interfaces/isystem.interface';
 import { IItem } from '../interfaces/iitem.interface';
 
-export class Item implements IItem {
+export class Item<T> implements IItem<T> {
   constructor(
     public system: ISystem,
-    public elements: any,
+    public elements: T,
   ) { }
 }
 

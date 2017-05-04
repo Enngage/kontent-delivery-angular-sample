@@ -38,36 +38,36 @@ export class KenticoCloudService {
         return Promise.reject(error.message || error);
     }
 
-    getItems(type: string, options?: any): Promise<ResponseMultiple> {
+    getItems<T>(type: string, options?: any): Promise<ResponseMultiple<T>> {
         var url = this.getBaseUrl() + "/items?system.type=" + type;
 
         url = this.addOptionsToUrl(url, options);
 
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json() as ResponseMultiple)
+            .then(response => response.json() as ResponseMultiple<T>)
             .catch(this.handleError);
     }
 
-    getItemByCodeName(type: string, codename: string, options?: any): Promise<ResponseSingle> {
+    getItemByCodeName<T>(type: string, codename: string, options?: any): Promise<ResponseSingle<T>> {
         var url = this.getBaseUrl() + "/items/" + codename;
 
         url = this.addOptionsToUrl(url, options);
 
         return this.http.get(url)
             .toPromise()
-            .then(response => (response.json() as ResponseSingle))
+            .then(response => (response.json() as ResponseSingle<T>))
             .catch(this.handleError);
     }
 
-     getItemById(type: string, id: string,options?: any): Promise<ResponseSingle> {
+     getItemById<T>(type: string, id: string,options?: any): Promise<ResponseSingle<T>> {
         var url = this.getBaseUrl() + "/items?system.type=" + type + "&system.id=" + id + "&limit=1";
 
         url = this.addOptionsToUrl(url, options);
 
         return this.http.get(url)
             .toPromise()
-            .then(response => new ResponseSingle(response.json().items[0], response.json().modular_content))
+            .then(response => new ResponseSingle<T>(response.json().items[0], response.json().modular_content))
             .catch(this.handleError);
     }
 }

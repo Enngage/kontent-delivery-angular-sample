@@ -1,9 +1,9 @@
 import { IItem } from '../interfaces/iitem.interface';
 import { IModularContent } from '../interfaces/imodular-content.interface';
 
-export class ResponseMultiple {
+export class ResponseMultiple<T> {
   constructor(
-    public items: IItem[],
+    public items: IItem<T>[],
     public modular_content: IModularContent[]
   ) { }
 

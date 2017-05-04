@@ -8,14 +8,13 @@ import { CodeExample } from '../../services/code-example/code-example.class';
 })
 export class DashboardComponent implements OnInit {
 
-  private codeExamples: CodeExample[]; 
+  public codeExamples: CodeExample[]; 
 
   constructor(
     private codeExampleService: CodeExampleService,
   ) { }
 
   ngOnInit(): void {
-    this.codeExampleService.getItems().then(codeExamples => this.codeExamples = codeExamples);
-    console.log(this.codeExamples);
+    this.codeExampleService.getItems().then(codeExamples => this.codeExamples = codeExamples).then(codeExamples => console.log(codeExamples));
   }
 }
