@@ -15,6 +15,16 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.codeExampleService.getItems().then(codeExamples => this.codeExamples = codeExamples).then(codeExamples => console.log(codeExamples));
+    this.codeExampleService.getItems()
+    .then(codeExamples => this.codeExamples = codeExamples)
+    .then(codeExamples => console.log(codeExamples))
+    .then(codeExamples => this.testLog(this.codeExamples));
+  }
+
+  private testLog(codeExamples: CodeExample[]): void{
+    codeExamples.forEach(codeExample => {
+      console.log(codeExample["author"]);
+      console.log(codeExample.author.name.text);
+    });
   }
 }
