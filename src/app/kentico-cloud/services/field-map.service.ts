@@ -13,7 +13,7 @@ export class FieldMapService {
 
     constructor() { }
 
-    getFields<T extends IItem<T>>(item: IItem<T>, modularContent: any): T {
+    getFields<TItem extends IItem<TItem>>(item: IItem<TItem>, modularContent: any): TItem {
         var properties = Object.getOwnPropertyNames(item.elements);
 
         properties.forEach(fieldName => {
@@ -21,7 +21,7 @@ export class FieldMapService {
             item[fieldName] = this.getField(field, modularContent);
         });
 
-        return item as T;
+        return item as TItem;
     }
 
     private getField(field: IField, modularContent: any): any {
@@ -49,7 +49,7 @@ export class FieldMapService {
     }
 
     private mapModularField(field: IField, modularContent: any): any {
-        var modularItem = modularContent[field.value[0]] as IItem<any>; // support for 1 modular contentitem only!
+        var modularItem = modularContent[field.value[0]] as IItem<any>;
 
         return this.getFields(modularItem, modularContent);
     }
