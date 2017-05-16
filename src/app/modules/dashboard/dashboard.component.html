@@ -9,6 +9,9 @@
         <p><strong>Author (raw):</strong> {{codeExample.author.elements.name.value}}</p>
         <p><strong>Author (strongly-typed):</strong> {{codeExample.author.name.text}}</p>
         <p><strong>Category:</strong> {{codeExample.category.category_name.text}}</p>
+        <p>
+            <img alt="" src="{{codeExample.author.image.asset[0].url}}"/>
+        </p>
     </div>
 </div>
 
@@ -16,9 +19,12 @@
 <h2>Single code example</h2>
 
 <div *ngIf="codeExample">
-        <h3 style="color: blueviolet"> {{codeExample.system.codename}}</h3>
-        <p><strong>Title:</strong> {{codeExample.title.text}}</p>
-        <p><strong>Author (raw):</strong> {{codeExample.author.elements.name.value}}</p>
-        <p><strong>Author (strongly-typed):</strong> {{codeExample.author.name.text}}</p>
-        <p><strong>Category:</strong> {{codeExample.category.category_name.text}}</p>
-    </div>
+    <h3 style="color: blueviolet"> {{codeExample.system.codename}}</h3>
+    <p><strong>Title:</strong> {{codeExample.title.text}}</p>
+    <p><strong>Author (raw):</strong> {{codeExample.author.elements.name.value}}</p>
+    <p><strong>Author (strongly-typed):</strong> {{codeExample.author.name.text}}</p>
+    <p><strong>Category:</strong> {{codeExample.category.category_name.text}}</p>
+    <p>
+            <img alt="" src="{{codeExample.author.image.asset[0].url}}"/>
+        </p>
+</div>

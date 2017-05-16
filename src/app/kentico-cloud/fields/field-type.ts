@@ -8,4 +8,5 @@ export class FieldType {
 
     static text = new FieldType("text");
     static modular_content = new FieldType("modular_content");
+    static asset = new FieldType("asset");
 }
