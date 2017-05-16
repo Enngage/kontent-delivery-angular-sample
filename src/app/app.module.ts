@@ -13,6 +13,8 @@ import { NotFoundComponent } from './modules/shared/not-found.component';
 
 // kentico cloud
 import { KenticoCloudModule } from './kentico-cloud/kentico-cloud.module';
+import { KCloudServiceProvider } from './services/kcloud.service.provider';
+import { KCloudService } from './kentico-cloud/services/kcloud.service';
 
 // custom modules
 import { DashboardModule } from './modules/dashboard/dashboard.module';
@@ -49,7 +51,9 @@ import { ServicesModule } from './services/services.module';
     DashboardModule,
     ServicesModule
   ],
-  providers: [],
+  providers: [
+    KCloudServiceProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

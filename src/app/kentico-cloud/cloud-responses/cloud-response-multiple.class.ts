@@ -2,21 +2,11 @@ import { IItem } from '../interfaces/iitem.interface';
 import { IModularContent } from '../interfaces/imodular-content.interface';
 import { IPagination } from '../interfaces/ipagination.interface';
 
-export class ResponseMultiple<TItem extends IItem<TItem>> {
+export class CloudResponseMultiple<TItem extends IItem<TItem>> {
   constructor(
     public items: TItem[],
+    public modular_content: IModularContent[],
     public pagination: IPagination
   ) { }
 
-  public getFirstItem(){
-    if (!this.items){
-      return null;
-    }
-
-    if (this.items.length < 1){
-        return null;
-    }
-
-    return this.items[0];
-  }
 }

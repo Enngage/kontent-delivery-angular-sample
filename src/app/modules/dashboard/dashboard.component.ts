@@ -8,23 +8,16 @@ import { CodeExample } from '../../services/code-example/code-example.class';
 })
 export class DashboardComponent implements OnInit {
 
-  public codeExamples: CodeExample[]; 
+  public codeExamples: CodeExample[];
 
   constructor(
     private codeExampleService: CodeExampleService,
   ) { }
 
   ngOnInit(): void {
-    this.codeExampleService.getItems()
-    .then(codeExamples => this.codeExamples = codeExamples)
-    .then(codeExamples => console.log(codeExamples))
-    .then(codeExamples => this.testLog(this.codeExamples));
-  }
-
-  private testLog(codeExamples: CodeExample[]): void{
-    codeExamples.forEach(codeExample => {
-      console.log(codeExample["author"]);
-      console.log(codeExample.author.name.text);
+    this.codeExampleService.getCodeExamples({ limit: 1 }).subscribe(response => {
+      console.log(response);
+      this.codeExamples = response.items;
     });
   }
 }

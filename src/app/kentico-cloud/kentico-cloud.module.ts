@@ -1,6 +1,11 @@
+// core
 import { NgModule } from '@angular/core';
-import { KenticoCloudService } from './services/kentico-cloud.service';
-import { KenticoCloudItemsService } from './services/kentico-cloud-items.service';
+
+// services
+import { ItemMapService } from './services/item-map.service';
+import { FieldMapService } from './services/field-map.service';
+import { KCloudService } from './services/kcloud.service';
+
 
 @NgModule({
     imports: [
@@ -8,8 +13,9 @@ import { KenticoCloudItemsService } from './services/kentico-cloud-items.service
     declarations: [
     ],
     providers: [
-        KenticoCloudService, 
-        KenticoCloudItemsService
-        ],
+        KCloudService,
+        FieldMapService,
+        ItemMapService
+    ],
 })
 export class KenticoCloudModule { }
