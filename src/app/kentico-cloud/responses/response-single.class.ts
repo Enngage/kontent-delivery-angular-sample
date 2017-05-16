@@ -3,7 +3,6 @@ import { IModularContent } from '../interfaces/imodular-content.interface';
 
 export class ResponseSingle<TItem extends IItem<TItem>> {
   constructor(
-    public item: TItem,
-    public modular_content: IModularContent[]
+    public item: TItem
   ) { }
 }

@@ -10,10 +10,12 @@ import { ItemMapService } from '../kentico-cloud/services/item-map.service';
 import { FieldMapService } from '../kentico-cloud/services/field-map.service';
 import { KCloudService } from '../kentico-cloud/services/kcloud.service';
 
-const apiUrl = 'https://deliver.kenticocloud.com';
-const projectId = 'b52fa0db-84ec-4310-8f7c-3b94ed06644d';
 
 let kCloudServiceFactory = (http: Http, itemMapService: ItemMapService) => {
+
+    let apiUrl = 'https://deliver.kenticocloud.com';
+    let projectId = 'b52fa0db-84ec-4310-8f7c-3b94ed06644d';
+
     return new KCloudService(
         http,
         itemMapService,

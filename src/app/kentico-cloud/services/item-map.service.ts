@@ -4,8 +4,9 @@ import { IModularContent } from '../interfaces/imodular-content.interface';
 import { IItem } from '../interfaces/iitem.interface';
 import { ResponseSingle } from '../responses/response-single.class';
 import { ResponseMultiple } from '../responses/response-multiple.class';
-import { IField, TextField } from '../fields/field-types';
-import { FieldType } from '../fields/field-type.class';
+import { TextField } from '../fields/field-types';
+import { IField } from '../interfaces/ifield.interface';
+import { FieldType } from '../fields/field-type';
 import { CloudResponseSingle } from '../cloud-responses/cloud-response-single.class';
 import { CloudResponseMultiple } from '../cloud-responses/cloud-response-multiple.class';
 

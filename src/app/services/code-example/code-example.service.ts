@@ -3,6 +3,7 @@ import { CodeExample } from './code-example.class';
 import { ISystem } from '../../kentico-cloud/interfaces/isystem.interface';
 import { IItem } from '../../kentico-cloud/interfaces/iitem.interface';
 import { KCloudService } from '../../kentico-cloud/services/kcloud.service';
+import { KCloudServiceProvider } from '../kcloud.service.provider';
 import { Observable } from 'rxjs/Observable';
 import { ResponseSingle } from '../../kentico-cloud/responses/response-single.class';
 import { ResponseMultiple } from '../../kentico-cloud/responses/response-multiple.class';
@@ -16,5 +17,9 @@ export class CodeExampleService{
 
     getCodeExamples(options?: any): Observable<ResponseMultiple<CodeExample>> {
         return this.kCloudService.getItems<CodeExample>(this.type, options);
+    }
+
+    getCodeExampleByCodename(codename: string): Observable<ResponseSingle<CodeExample>>{
+        return this.kCloudService.getItemByCodename<CodeExample>(this.type, codename);
     }
 }

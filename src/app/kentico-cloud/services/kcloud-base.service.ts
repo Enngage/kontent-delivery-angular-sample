@@ -55,18 +55,22 @@ export abstract class KCloudBaseService {
         return Observable.throw(errMsg);
     }
 
-    private extractData(response: Response) {
-        let body = response.json();
-        return body || {};
+    private getSingleResponse<TItem extends IItem<TItem>>(response: Response): ResponseSingle<TItem> {
+         var responseCloudSingle = (response.json() || {}) as CloudResponseSingle<TItem>;
+
+        // map item
+        var item = this.itemMapService.mapSingleItem<TItem>(responseCloudSingle);
+
+        return new ResponseSingle(item);
     }
 
-    protected getMultipleResponse<TItem extends IItem<TItem>>(response: Response): ResponseMultiple<TItem> {
-        var responseMultiple = (response.json() || {}) as CloudResponseMultiple<TItem>;
+    private getMultipleResponse<TItem extends IItem<TItem>>(response: Response): ResponseMultiple<TItem> {
+        var responseCloudMultiple = (response.json() || {}) as CloudResponseMultiple<TItem>;
 
         // map items
-        var items = this.itemMapService.mapMultipleItems<TItem>(responseMultiple);
+        var items = this.itemMapService.mapMultipleItems<TItem>(responseCloudMultiple);
 
-        return new ResponseMultiple(items, responseMultiple.pagination);
+        return new ResponseMultiple(items, responseCloudMultiple.pagination);
     }
 
     protected getSingleItem<TItem extends IItem<TItem>>(type: string, action: string, options?: any): Observable<ResponseSingle<TItem>> {
@@ -75,7 +79,9 @@ export abstract class KCloudBaseService {
         url = this.addOptionsToUrl(url, options);
 
         return this.http.get(url)
-            .map(response => this.extractData(response) as ResponseSingle<TItem>)
+            .map(response => {
+                return this.getSingleResponse<TItem>(response)
+            })
             .catch(response => {
                 return this.handleError(response);
             });
