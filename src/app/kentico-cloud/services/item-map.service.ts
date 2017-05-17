@@ -21,7 +21,7 @@ export class ItemMapService {
         if (!item) {
             return null;
         }
-        return this.fieldMapService.getFields<TItem>(item, modularContent);
+        return this.fieldMapService.getFields(item, modularContent);
     }
 
     mapSingleItem<TItem extends IItem<TItem>>(response: CloudResponseSingle<TItem>): TItem {
