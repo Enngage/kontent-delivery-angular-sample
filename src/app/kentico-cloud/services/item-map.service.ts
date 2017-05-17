@@ -17,21 +17,21 @@ export class ItemMapService {
 
     constructor() { }
 
-    private mapItem<TItem extends IItem<TItem>>(item: IItem<TItem>, modularContent: any): TItem {
+    private mapItem<TItem extends IItem>(item: IItem, modularContent: any): TItem {
         if (!item) {
             return null;
         }
         return this.fieldMapService.getFields(item, modularContent);
     }
 
-    mapSingleItem<TItem extends IItem<TItem>>(response: CloudResponseSingle<TItem>): TItem {
-        return this.mapItem(response.item, response.modular_content);
+    mapSingleItem<TItem extends IItem>(response: CloudResponseSingle<IItem>): TItem {
+        return this.mapItem<TItem>(response.item, response.modular_content);
     }
 
-    mapMultipleItems<TItem extends IItem<TItem>>(response: CloudResponseMultiple<TItem>): TItem[] {
+    mapMultipleItems<TItem extends IItem>(response: CloudResponseMultiple<IItem>): TItem[] {
         var that = this;
         return response.items.map(function (item) {
-            return that.mapItem(item, response.modular_content);
+            return that.mapItem<TItem>(item, response.modular_content);
         });
     }
 }

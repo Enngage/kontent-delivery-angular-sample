@@ -1,7 +1,7 @@
 import { ISystem } from './isystem.interface';
 
-export interface IItem<T> {
+export interface IItem {
   system: ISystem,
-  elements: T
+  elements: any
 }
 

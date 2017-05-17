@@ -24,19 +24,19 @@ export class KCloudService extends KCloudBaseService {
         protected config: KCloudConfig
     ) { super(http, itemMapService, config) }
 
-    getItems<TItem extends IItem<TItem>>(type: string, options?: any): Observable<ResponseMultiple<TItem>> {
+    getItems<TItem extends IItem>(type: string, options?: any): Observable<ResponseMultiple<TItem>> {
         var action = '/items?system.type=' + type;
 
         return this.getMultipleItems(type, action, options);
     }
 
-    getItemByCodename<TItem extends IItem<TItem>>(type: string, codename: string, options?: any): Observable<ResponseSingle<TItem>> {
+    getItemByCodename<TItem extends IItem>(type: string, codename: string, options?: any): Observable<ResponseSingle<TItem>> {
         var action = '/items/' + codename;
 
         return this.getSingleItem(type, action, options);
     }
 
-    getItemById<TItem extends IItem<TItem>>(type: string, id: string, options?: any): Observable<ResponseSingle<TItem>> {
+    getItemById<TItem extends IItem>(type: string, id: string, options?: any): Observable<ResponseSingle<TItem>> {
         var action = '/items?system.type=' + type + '&system.id=' + id + '&limit=1';
 
         return this.getSingleItem(type, action, options);

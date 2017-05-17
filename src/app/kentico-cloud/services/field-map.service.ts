@@ -13,7 +13,7 @@ export class FieldMapService {
 
     constructor() { }
 
-    getFields(item: IItem<any>, modularContent: any): any {
+    getFields(item: IItem, modularContent: any): any {
         var properties = Object.getOwnPropertyNames(item.elements);
 
         properties.forEach(fieldName => {

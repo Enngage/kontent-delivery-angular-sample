@@ -2,7 +2,7 @@ import { IItem } from '../interfaces/iitem.interface';
 import { IModularContent } from '../interfaces/imodular-content.interface';
 import { IPagination } from '../interfaces/ipagination.interface';
 
-export class CloudResponseMultiple<TItem extends IItem<TItem>> {
+export class CloudResponseMultiple<TItem extends IItem> {
   constructor(
     public items: TItem[],
     public modular_content: IModularContent[],
