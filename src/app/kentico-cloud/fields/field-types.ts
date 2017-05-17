@@ -30,5 +30,5 @@ export class AssetField implements IField {
         public value: any
     ) { };
 
-    public asset = this.value as AssetModel[];
+    public assets = this.value as AssetModel[];
 }

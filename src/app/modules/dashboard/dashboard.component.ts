@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
       console.log(response);
       this.codeExample = response.item;
 
-      response.item.author.image.asset[0].url;
+      console.log(response.item.author.image.assets[0].url);
     });
   }
 }
