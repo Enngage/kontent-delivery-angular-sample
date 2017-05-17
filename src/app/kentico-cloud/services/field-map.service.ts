@@ -49,7 +49,7 @@ export class FieldMapService {
     }
 
     private mapModularField(field: IField, modularContent: any): any {
-        var modularItem = modularContent[field.value[0]] as IItem<any>;
+        var modularItem = modularContent[field.value[0]];
 
         return this.getFields(modularItem, modularContent);
     }

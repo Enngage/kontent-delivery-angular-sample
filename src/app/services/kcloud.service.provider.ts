@@ -11,7 +11,7 @@ import { FieldMapService } from '../kentico-cloud/services/field-map.service';
 import { KCloudService } from '../kentico-cloud/services/kcloud.service';
 
 
-let kCloudServiceFactory = (http: Http, itemMapService: ItemMapService) => {
+export function KCloudServiceFactory (http: Http, itemMapService: ItemMapService) {
 
     let apiUrl = 'https://deliver.kenticocloud.com';
     let projectId = 'b52fa0db-84ec-4310-8f7c-3b94ed06644d';
@@ -23,10 +23,10 @@ let kCloudServiceFactory = (http: Http, itemMapService: ItemMapService) => {
     )
 };
 
-export let KCloudServiceProvider =
+export var KCloudServiceProvider =
     {
         provide: KCloudService,
-        useFactory: kCloudServiceFactory,
+        useFactory: KCloudServiceFactory,
         deps: [Http, ItemMapService]
     };
 

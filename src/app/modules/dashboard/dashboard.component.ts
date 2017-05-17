@@ -19,11 +19,14 @@ export class DashboardComponent implements OnInit {
     this.codeExampleService.getCodeExamples({ limit: 1 }).subscribe(response => {
       console.log(response);
       this.codeExamples = response.items;
+
     });
 
     this.codeExampleService.getCodeExampleByCodename('changemacrorule_parameters').subscribe(response => {
       console.log(response);
-      this.codeExample = response.item
+      this.codeExample = response.item;
+
+      response.item.author.image.asset[0].url;
     });
   }
 }
