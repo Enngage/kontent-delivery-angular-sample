@@ -4,7 +4,7 @@ import { TextField } from '../../kentico-cloud/fields/field-types';
 import { Author } from './author.class';
 import { Category } from './category.class';
 
-export class CodeExample implements IItem{ 
+export class CodeExample implements IItem {
 
   constructor(
     public system: ISystem,
@@ -12,6 +12,10 @@ export class CodeExample implements IItem{
     public title: TextField,
     public author: Author,
     public category: Category
-  ) {}
+  ) { }
+
+  testCodeExampleMethod(): void {
+    alert("code example test method")
+  }
 }
 

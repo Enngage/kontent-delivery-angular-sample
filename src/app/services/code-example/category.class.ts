@@ -9,5 +9,6 @@ export class Category implements IItem{
     public elements: any,
     public category_name: TextField,
   ) {}
+
 }
 

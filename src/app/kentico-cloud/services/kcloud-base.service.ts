@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { ResponseSingle } from '../responses/response-single.class';
 import { ResponseMultiple } from '../responses/response-multiple.class';
-import { CloudResponseSingle } from '../cloud-responses/cloud-response-single.class';
-import { CloudResponseMultiple } from '../cloud-responses/cloud-response-multiple.class';
+import { ICloudResponseSingle } from '../cloud-responses/cloud-response-single.interface';
+import { ICloudResponseMultiple } from '../cloud-responses/cloud-response-multiple.interface';
 import { IItem } from '../interfaces/iitem.interface';
 import { ItemMapService } from './item-map.service';
 import { Observable } from 'rxjs/Observable';
+import { Pagination } from '../models/pagination.class';
+
 // config
 import { KCloudConfig } from '../config/kcloud.config';
 
@@ -56,7 +58,7 @@ export abstract class KCloudBaseService {
     }
 
     private getSingleResponse<TItem extends IItem>(response: Response): ResponseSingle<TItem> {
-         var responseCloudSingle = (response.json() || {}) as CloudResponseSingle<TItem>;
+         var responseCloudSingle = (response.json() || {}) as ICloudResponseSingle;
 
         // map item
         var item = this.itemMapService.mapSingleItem<TItem>(responseCloudSingle);
@@ -65,12 +67,20 @@ export abstract class KCloudBaseService {
     }
 
     private getMultipleResponse<TItem extends IItem>(response: Response): ResponseMultiple<TItem> {
-        var responseCloudMultiple = (response.json() || {}) as CloudResponseMultiple<TItem>;
+        var responseCloudMultiple = (response.json() || {}) as ICloudResponseMultiple;
 
         // map items
         var items = this.itemMapService.mapMultipleItems<TItem>(responseCloudMultiple);
 
-        return new ResponseMultiple(items, responseCloudMultiple.pagination);
+        // pagination
+        var pagination = new Pagination(
+            responseCloudMultiple.pagination.skip,
+            responseCloudMultiple.pagination.limit,
+            responseCloudMultiple.pagination.count,
+            responseCloudMultiple.pagination.next_page,
+            );
+
+        return new ResponseMultiple(items, pagination);
     }
 
     protected getSingleItem<TItem extends IItem>(type: string, action: string, options?: any): Observable<ResponseSingle<TItem>> {

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CodeExampleService } from '../../services/code-example/code-example.service';
 import { CodeExample } from '../../services/code-example/code-example.class';
+import { ResponseSingle } from '../../kentico-cloud/responses/response-single.class';
 
 @Component({
   selector: 'dashboard',
@@ -26,7 +27,20 @@ export class DashboardComponent implements OnInit {
       console.log(response);
       this.codeExample = response.item;
 
-      console.log(response.item.author.image.assets[0].url);
+      if (response instanceof ResponseSingle){
+        console.log("is single response type")
+      }
+      else{
+        console.log("not single response type");
+      }
+      if (response.item instanceof CodeExample){
+        console.log("is code example type");
+      }
+      else{
+        console.log("not code example type");
+      }
+      
+      //response.item.testCodeExampleMethod();
     });
   }
 }
