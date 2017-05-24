@@ -23,13 +23,16 @@ import { ServicesModule } from './services/services.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { ItemsModule } from './modules/items/items.module';
 
+// angular2 markdown
+import { MarkdownModule } from 'angular2-markdown';
+
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent
   ],
   imports: [
-    // Default routes
+    // default routes
     RouterModule.forRoot([
       {
         path: '',
@@ -40,6 +43,9 @@ import { ItemsModule } from './modules/items/items.module';
         component: NotFoundComponent
       }
     ]),
+
+    // markdown
+    MarkdownModule.forRoot(),
 
     // angular modules
     BrowserModule,
@@ -57,6 +63,6 @@ import { ItemsModule } from './modules/items/items.module';
   providers: [
     KCloudServiceProvider
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
