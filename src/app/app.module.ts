@@ -16,10 +16,12 @@ import { KenticoCloudModule } from './kentico-cloud/kentico-cloud.module';
 import { KCloudServiceProvider } from './services/kcloud.service.provider';
 import { KCloudService } from './kentico-cloud/services/kcloud.service';
 
-// custom modules
-import { DashboardModule } from './modules/dashboard/dashboard.module';
+// services
 import { ServicesModule } from './services/services.module';
 
+// custom modules
+import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { ItemsModule } from './modules/items/items.module';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { ServicesModule } from './services/services.module';
 
     // Custom modules
     DashboardModule,
-    ServicesModule
+    ServicesModule,
+    ItemsModule
   ],
   providers: [
     KCloudServiceProvider
