@@ -6,7 +6,6 @@ import { ItemMapService } from './services/item-map.service';
 import { FieldMapService } from './services/field-map.service';
 import { KCloudService } from './services/kcloud.service';
 
-
 @NgModule({
     imports: [
     ],
@@ -14,8 +13,6 @@ import { KCloudService } from './services/kcloud.service';
     ],
     providers: [
         KCloudService,
-        FieldMapService,
-        ItemMapService
     ],
 })
 export class KenticoCloudModule { }

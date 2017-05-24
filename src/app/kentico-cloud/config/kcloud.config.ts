@@ -1,10 +1,12 @@
-export class KCloudConfig {
+import { TypeResolver } from '../models/type-resolver.class';
 
-    public option1: string;
+export class KCloudConfig {
+    public option1?: string;
 
     constructor(
         public apiEndpoint: string,
         public projectId: string,
+        public typeResolvers: TypeResolver[],
         public options?: {
             option1?: string
         }) {

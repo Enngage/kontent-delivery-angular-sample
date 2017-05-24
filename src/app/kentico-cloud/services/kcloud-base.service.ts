@@ -5,7 +5,7 @@ import { ResponseMultiple } from '../responses/response-multiple.class';
 import { ICloudResponseSingle } from '../cloud-responses/cloud-response-single.interface';
 import { ICloudResponseMultiple } from '../cloud-responses/cloud-response-multiple.interface';
 import { IItem } from '../interfaces/iitem.interface';
-import { ItemMapService } from './item-map.service';
+import { ItemMapService } from '../utility-services/item-map.service';
 import { Observable } from 'rxjs/Observable';
 import { Pagination } from '../models/pagination.class';
 
@@ -18,11 +18,14 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export abstract class KCloudBaseService {
 
+    protected itemMapService: ItemMapService;
+
     constructor(
         protected http: Http,
-        protected itemMapService: ItemMapService,
         protected config: KCloudConfig
-    ) { }
+    ) {
+        this.itemMapService = new ItemMapService(config.typeResolvers);
+     }
 
     private getBaseUrl(): string {
         return this.config.apiEndpoint + '/' + this.config.projectId;
@@ -77,7 +80,7 @@ export abstract class KCloudBaseService {
             responseCloudMultiple.pagination.skip,
             responseCloudMultiple.pagination.limit,
             responseCloudMultiple.pagination.count,
-            responseCloudMultiple.pagination.next_page,
+            responseCloudMultiple.pagination.next_page
             );
 
         return new ResponseMultiple(items, pagination);

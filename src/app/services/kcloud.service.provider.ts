@@ -4,22 +4,31 @@ import { Http } from '@angular/http';
 
 // config
 import { KCloudConfig } from '../kentico-cloud/config/kcloud.config';
+import { TypeResolver } from '../kentico-cloud/models/type-resolver.class';
 
 // services
-import { ItemMapService } from '../kentico-cloud/services/item-map.service';
-import { FieldMapService } from '../kentico-cloud/services/field-map.service';
 import { KCloudService } from '../kentico-cloud/services/kcloud.service';
 
+// models
+import { Author } from './code-example/author.class';
+import { Category } from './code-example/category.class';
+import { CodeExample } from './code-example/code-example.class';
 
-export function KCloudServiceFactory (http: Http, itemMapService: ItemMapService) {
+
+export function KCloudServiceFactory (http: Http) {
 
     let apiUrl = 'https://deliver.kenticocloud.com';
     let projectId = 'b52fa0db-84ec-4310-8f7c-3b94ed06644d';
 
+    let typeResolvers: TypeResolver[] = [
+        new TypeResolver("code_example", () => new CodeExample(null, null, null, null, null)),
+        new TypeResolver("category", () => new Category(null, null, null)),
+        new TypeResolver("author", () => new Author(null, null, null, null)),
+    ];
+
     return new KCloudService(
         http,
-        itemMapService,
-        new KCloudConfig(apiUrl, projectId)
+        new KCloudConfig(apiUrl, projectId, typeResolvers)
     )
 };
 
@@ -27,7 +36,7 @@ export var KCloudServiceProvider =
     {
         provide: KCloudService,
         useFactory: KCloudServiceFactory,
-        deps: [Http, ItemMapService]
+        deps: [Http]
     };
 
 @NgModule({
@@ -37,8 +46,6 @@ export var KCloudServiceProvider =
     ],
     providers: [
         KCloudService,
-        FieldMapService,
-        ItemMapService
     ],
 })
 export class KenticoCloudModule { }

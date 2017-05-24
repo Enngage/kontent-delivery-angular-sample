@@ -12,7 +12,7 @@ import { ResponseMultiple } from '../responses/response-multiple.class';
 import { IItem } from '../interfaces/iitem.interface';
 
 // services
-import { ItemMapService } from './item-map.service';
+import { ItemMapService } from '../utility-services/item-map.service';
 import { KCloudBaseService } from './kcloud-base.service';
 
 @Injectable()
@@ -20,9 +20,10 @@ export class KCloudService extends KCloudBaseService {
 
     constructor(
         protected http: Http,
-        protected itemMapService: ItemMapService,
         protected config: KCloudConfig
-    ) { super(http, itemMapService, config) }
+    ) {
+        super(http, config)
+    }
 
     getItems<TItem extends IItem>(type: string, options?: any): Observable<ResponseMultiple<TItem>> {
         var action = '/items?system.type=' + type;
