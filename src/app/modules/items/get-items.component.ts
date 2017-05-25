@@ -5,7 +5,7 @@ import { KCloudService } from '../../kentico-cloud/services/kcloud.service';
 
 // models
 import { CodeExample } from '../../models/code-example.class';
-import { MarkdownModule } from 'angular2-markdown';
+import { Limit, Order, Depth, Elements, Skip } from '../../kentico-cloud/models/options';
 
 @Component({
   templateUrl: 'get-items.component.html',
@@ -23,9 +23,15 @@ export class GetItemsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.kCloudService.getItems<CodeExample>(this.type, { limit: 5 }).subscribe(response => {
-      console.log(response);
-      this.codeExamples = response.items;
+    this.kCloudService.getItems<CodeExample>(this.type, [
+      new Limit(5), 
+      new Skip(1),
+      new Depth(5),
+      new Elements(["title", "author", "category", "image", "name", "category_name"]),
+      new Order("elements.title[asc]")
+      ]).subscribe(response => {
+        console.log(response);
+        this.codeExamples = response.items;
     });
 
     this.kCloudService.getItemByCodename<CodeExample>(this.type, 'changemacrorule_parameters').subscribe(response => {

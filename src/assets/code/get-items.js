@@ -1,4 +1,3 @@
- this.codeExampleService.getCodeExamples({ limit: 5 }).subscribe(response => {
+this.kCloudService.getItems<CodeExample>('code_example', { limit: 5 }).subscribe(response => {
       console.log(response);
-      this.codeExamples = response.items;
     });

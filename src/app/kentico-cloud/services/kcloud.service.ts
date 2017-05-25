@@ -9,6 +9,7 @@ import { KCloudConfig } from '../config/kcloud.config';
 // models
 import { ResponseSingle, ResponseMultiple } from '../models/responses';
 import { IItem } from '../interfaces/iitem.interface';
+import { IOption } from '../interfaces/ioption.interface';
 
 // services
 import { ItemMapService } from '../utility-services/item-map.service';
@@ -24,19 +25,19 @@ export class KCloudService extends KCloudBaseService {
         super(http, config)
     }
 
-    getItems<TItem extends IItem>(type: string, options?: any): Observable<ResponseMultiple<TItem>> {
+    getItems<TItem extends IItem>(type: string, options?: IOption[]): Observable<ResponseMultiple<TItem>> {
         var action = '/items?system.type=' + type;
 
         return this.getMultipleItems(type, action, options);
     }
 
-    getItemByCodename<TItem extends IItem>(type: string, codename: string, options?: any): Observable<ResponseSingle<TItem>> {
+    getItemByCodename<TItem extends IItem>(type: string, codename: string, options?: IOption[]): Observable<ResponseSingle<TItem>> {
         var action = '/items/' + codename;
 
         return this.getSingleItem(type, action, options);
     }
 
-    getItemById<TItem extends IItem>(type: string, id: string, options?: any): Observable<ResponseSingle<TItem>> {
+    getItemById<TItem extends IItem>(type: string, id: string, options?: IOption[]): Observable<ResponseSingle<TItem>> {
         var action = '/items?system.type=' + type + '&system.id=' + id + '&limit=1';
 
         return this.getSingleItem(type, action, options);
