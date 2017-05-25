@@ -9,7 +9,7 @@ import { DashboardRouter } from './dashboard.router';
         CommonModule,
     ],
     declarations: [
-        DashboardComponent,
+        DashboardComponent
     ]
 })
 export class DashboardModule { }
