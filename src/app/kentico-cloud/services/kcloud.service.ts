@@ -7,8 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { KCloudConfig } from '../config/kcloud.config';
 
 // models
-import { ResponseSingle } from '../responses/response-single.class';
-import { ResponseMultiple } from '../responses/response-multiple.class';
+import { ResponseSingle, ResponseMultiple } from '../models/responses';
 import { IItem } from '../interfaces/iitem.interface';
 
 // services

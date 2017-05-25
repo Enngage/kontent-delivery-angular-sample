@@ -1,6 +1,8 @@
-import { ISystem } from '../../kentico-cloud/interfaces/isystem.interface';
-import { IItem } from '../../kentico-cloud/interfaces/iitem.interface';
-import { TextField } from '../../kentico-cloud/fields/field-types';
+import { ISystem } from '../kentico-cloud/interfaces/isystem.interface';
+import { IItem } from '../kentico-cloud/interfaces/iitem.interface';
+import { TextField } from '../kentico-cloud/fields/field-types';
+
+// nested type models
 import { Author } from './author.class';
 import { Category } from './category.class';
 
@@ -13,9 +15,5 @@ export class CodeExample implements IItem {
     public author: Author,
     public category: Category
   ) { }
-
-  testCodeExampleMethod(): void {
-    alert("code example test method")
-  }
 }
 

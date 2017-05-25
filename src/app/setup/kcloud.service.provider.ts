@@ -10,10 +10,9 @@ import { TypeResolver } from '../kentico-cloud/models/type-resolver.class';
 import { KCloudService } from '../kentico-cloud/services/kcloud.service';
 
 // models
-import { Author } from './code-example/author.class';
-import { Category } from './code-example/category.class';
-import { CodeExample } from './code-example/code-example.class';
-
+import { Author } from '../models/author.class';
+import { Category } from '../models/category.class';
+import { CodeExample } from '../models/code-example.class';
 
 export function KCloudServiceFactory (http: Http) {
 

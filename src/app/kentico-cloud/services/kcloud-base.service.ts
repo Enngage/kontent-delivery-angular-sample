@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
-import { ResponseSingle } from '../responses/response-single.class';
-import { ResponseMultiple } from '../responses/response-multiple.class';
-import { ICloudResponseSingle } from '../cloud-responses/cloud-response-single.interface';
-import { ICloudResponseMultiple } from '../cloud-responses/cloud-response-multiple.interface';
-import { IItem } from '../interfaces/iitem.interface';
-import { ItemMapService } from '../utility-services/item-map.service';
 import { Observable } from 'rxjs/Observable';
-import { Pagination } from '../models/pagination.class';
 
 // config
 import { KCloudConfig } from '../config/kcloud.config';
 
+// models
+import { ResponseSingle, ResponseMultiple } from '../models/responses';
+import { ICloudResponseSingle, ICloudResponseMultiple } from '../interfaces/cloud-responses';
+import { Pagination } from '../models/pagination.class';
+import { IItem } from '../interfaces/iitem.interface';
+
+// services
+import { ItemMapService } from '../utility-services/item-map.service';
+
+// rxjs
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 

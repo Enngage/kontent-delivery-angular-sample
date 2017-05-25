@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IModularContent } from '../interfaces/imodular-content.interface';
 import { IItem } from '../interfaces/iitem.interface';
-import { ResponseSingle } from '../responses/response-single.class';
-import { ResponseMultiple } from '../responses/response-multiple.class';
+import { ResponseSingle, ResponseMultiple } from '../models/responses';
 import { TextField, AssetsField } from '../fields/field-types';
 import { IField } from '../interfaces/ifield.interface';
 import { FieldType } from '../fields/field-type';

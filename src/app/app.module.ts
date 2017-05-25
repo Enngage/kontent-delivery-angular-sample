@@ -13,11 +13,8 @@ import { NotFoundComponent } from './modules/shared/not-found.component';
 
 // kentico cloud
 import { KenticoCloudModule } from './kentico-cloud/kentico-cloud.module';
-import { KCloudServiceProvider } from './services/kcloud.service.provider';
+import { KCloudServiceProvider } from './setup/kcloud.service.provider';
 import { KCloudService } from './kentico-cloud/services/kcloud.service';
-
-// services
-import { ServicesModule } from './services/services.module';
 
 // custom modules
 import { DashboardModule } from './modules/dashboard/dashboard.module';
@@ -57,7 +54,6 @@ import { MarkdownModule } from 'angular2-markdown';
 
     // Custom modules
     DashboardModule,
-    ServicesModule,
     ItemsModule
   ],
   providers: [
