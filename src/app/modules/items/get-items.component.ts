@@ -6,11 +6,15 @@ import { KCloudService } from '../../kentico-cloud/services/kcloud.service';
 // models
 import { CodeExample } from '../../models/code-example.class';
 import { Character } from '../../models/character.class';
-import { LimitParameter, OrderAscParameter, OrderDescParameter, DepthParameter,
-   ElementsParameter, SkipParameter } from '../../kentico-cloud/models/parameters';
-import { EqualsFilter, AllFilter, AnyFilter, ContainsFilter, GreaterThanFilter,
-   GreaterThanOrEqualFilter, Infilter, LessThanFilter, LessThanOrEqualFilter,
-    RangeFilter } from '../../kentico-cloud/models/filters';
+import {
+  LimitParameter, OrderAscParameter, OrderDescParameter, DepthParameter,
+  ElementsParameter, SkipParameter
+} from '../../kentico-cloud/models/parameters';
+import {
+  EqualsFilter, AllFilter, AnyFilter, ContainsFilter, GreaterThanFilter,
+  GreaterThanOrEqualFilter, Infilter, LessThanFilter, LessThanOrEqualFilter,
+  RangeFilter
+} from '../../kentico-cloud/models/filters';
 
 @Component({
   templateUrl: 'get-items.component.html',
@@ -35,7 +39,6 @@ export class GetItemsComponent implements OnInit {
     ])
       .subscribe(response => {
         console.log(response);
-        console.log(response.items[0].someDateTime.datetime);
         this.characters = response.items;
       });
 

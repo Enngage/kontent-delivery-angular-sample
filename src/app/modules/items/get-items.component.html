@@ -26,7 +26,6 @@
             <div *ngFor="let character of characters" class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
                  <span>{{character.name.text}} - {{character.someNumber.number}}</span>
-                 <div [innerHTML]="character.someRichText.text"></div> 
                 </span>
             </div>
         </div>
