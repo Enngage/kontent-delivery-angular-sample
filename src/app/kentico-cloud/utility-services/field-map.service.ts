@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IModularContent } from '../interfaces/imodular-content.interface';
 import { IItem } from '../interfaces/iitem.interface';
 import { ResponseSingle, ResponseMultiple } from '../models/responses';
-import { TextField, AssetsField, NumberField } from '../fields/field-types';
+import { TextField, AssetsField, NumberField, MultipleChoiceField, DateTimeField, RichTextField } from '../fields/field-types';
 import { IField } from '../interfaces/ifield.interface';
 import { FieldType } from '../fields/field-type';
 import { TypeResolver } from '../models/type-resolver.class';
@@ -26,10 +26,12 @@ export class FieldMapService {
             var propertyName;
 
             // resolve value into a different 'property'
-            if (itemTyped.resolver){
+            if (itemTyped.resolver) {
                 propertyName = itemTyped.resolver(fieldName);
             }
-            else{
+
+            // if property name is null/empty, use elements codename
+            if (!propertyName){
                 propertyName = fieldName;
             }
 
@@ -52,10 +54,31 @@ export class FieldMapService {
         else if (field.type.toString() === FieldType.number.toString()) {
             return this.mapNumberField(field);
         }
+        else if (field.type.toString() === FieldType.multiple_choice.toString()) {
+            return this.mapMultipleChoiceField(field);
+        }
+        else if (field.type.toString() === FieldType.datetime.toString()) {
+            return this.mapDateTimeField(field);
+        }
+        else if (field.type.toString() === FieldType.rich_text.toString()) {
+            return this.mapRichTextField(field);
+        }
         else {
             console.log(`Unsupported field type '${field.type}'`);
             //throw Error(`Unsupported field type '${field.type}'`)
         }
+    }
+
+    private mapRichTextField(field: IField): RichTextField {
+        return new RichTextField(field.name, field.type, field.value);
+    }
+
+    private mapDateTimeField(field: IField): DateTimeField {
+        return new DateTimeField(field.name, field.type, field.value);
+    }
+
+    private mapMultipleChoiceField(field: IField): MultipleChoiceField {
+        return new MultipleChoiceField(field.name, field.type, field.value);
     }
 
     private mapNumberField(field: IField): NumberField {

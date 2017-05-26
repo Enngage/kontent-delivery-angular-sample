@@ -35,6 +35,7 @@ export class GetItemsComponent implements OnInit {
     ])
       .subscribe(response => {
         console.log(response);
+        console.log(response.items[0].someDateTime.datetime);
         this.characters = response.items;
       });
 

@@ -1,5 +1,4 @@
 import { IQueryOption } from '../interfaces/iquery-option.interface';
-import { FilterType } from './filter.enum';
 
 export class EqualsFilter implements IQueryOption {
     constructor(

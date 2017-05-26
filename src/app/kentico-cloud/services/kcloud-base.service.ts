@@ -49,25 +49,6 @@ export abstract class KCloudBaseService {
         return url;
     }
 
-    /*
-    private addOptionsToUrl(url: string, options?: any): string {
-        if (options) {
-            let parameters = Object.getOwnPropertyNames(options).map((name) => encodeURIComponent(name) + "=" + encodeURIComponent(options[name]));
-            if (parameters.length > 0) {
-                if (url.indexOf('?') > -1) {
-                    url = url + '&';
-                }
-                else {
-                    url = url + '?';
-                }
-                url = url + parameters.join('&');
-            }
-        }
-
-        return url;
-    }
-    */
-
     private handleError(error: Response | any): Observable<any> {
         var errMsg: string;
 
