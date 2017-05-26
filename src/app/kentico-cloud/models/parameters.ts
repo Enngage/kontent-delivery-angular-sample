@@ -1,7 +1,6 @@
-import { IOption } from '../interfaces/ioption.interface';
+import { IQueryOption } from '../interfaces/iquery-option.interface';
 
-
-export class Elements implements IOption {
+export class ElementsParameter implements IQueryOption {
 
     constructor(
         public elementCodenames: string[]
@@ -12,7 +11,7 @@ export class Elements implements IOption {
     }
 
     public GetParamValue(): string {
-        if (!this.elementCodenames){
+        if (!this.elementCodenames) {
             return null;
         }
 
@@ -20,7 +19,7 @@ export class Elements implements IOption {
     }
 }
 
-export class Limit implements IOption {
+export class LimitParameter implements IQueryOption {
 
     constructor(
         public limit: number
@@ -35,7 +34,7 @@ export class Limit implements IOption {
     }
 }
 
-export class Skip implements IOption {
+export class SkipParameter implements IQueryOption {
 
     constructor(
         public skip: number
@@ -50,10 +49,10 @@ export class Skip implements IOption {
     }
 }
 
-export class Order implements IOption {
+export class OrderAscParameter implements IQueryOption {
 
     constructor(
-        public order: string
+        public field: string
     ) { }
 
     public GetParam(): string {
@@ -61,11 +60,26 @@ export class Order implements IOption {
     }
 
     public GetParamValue(): string {
-        return this.order.toString();
+        return `${this.field}[asc]`;
     }
 }
 
-export class Depth implements IOption {
+export class OrderDescParameter implements IQueryOption {
+
+    constructor(
+        public field: string
+    ) { }
+
+    public GetParam(): string {
+        return 'order';
+    }
+
+    public GetParamValue(): string {
+        return `${this.field}[desc]`;
+    }
+}
+
+export class DepthParameter implements IQueryOption {
 
     constructor(
         public depth: number

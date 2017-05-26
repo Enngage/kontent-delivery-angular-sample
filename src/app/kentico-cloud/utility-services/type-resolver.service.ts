@@ -2,6 +2,7 @@ import { TypeResolver } from '../models/type-resolver.class';
 import { IItem } from '../interfaces/iitem.interface';
 import { System } from '../models/system.class';
 
+import { Character } from '../../models/character.class';
 export class TypeResolverService {
 
     constructor(
@@ -21,9 +22,6 @@ export class TypeResolverService {
         }
 
         var typedItem = typeResolver.resolve() as TItem;
-
-        // map all properties from old item to new typed item
-        Object.assign(typedItem, item);
 
         // use typed 'system' property
         typedItem.system = new System(

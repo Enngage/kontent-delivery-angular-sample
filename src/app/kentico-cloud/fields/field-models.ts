@@ -1,7 +1,11 @@
-export interface AssetModel{
-    name: string;
-    type: string;
-    size: number;
-    description: string;
-    url: string;
+import { IAsset } from './field-interfaces';
+
+export class AssetModel implements IAsset{
+    constructor(
+        public name: string,
+        public type: string,
+        public size: number,
+        public description: string,
+        public url: string,
+    ) { }
 }

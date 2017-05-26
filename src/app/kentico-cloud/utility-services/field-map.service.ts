@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IModularContent } from '../interfaces/imodular-content.interface';
 import { IItem } from '../interfaces/iitem.interface';
 import { ResponseSingle, ResponseMultiple } from '../models/responses';
-import { TextField, AssetsField } from '../fields/field-types';
+import { TextField, AssetsField, NumberField } from '../fields/field-types';
 import { IField } from '../interfaces/ifield.interface';
 import { FieldType } from '../fields/field-type';
 import { TypeResolver } from '../models/type-resolver.class';
@@ -11,7 +11,7 @@ import { TypeResolverService } from './type-resolver.service';
 export class FieldMapService {
 
     constructor(
-        private typeResolverService: TypeResolverService
+        private typeResolverService: TypeResolverService,
     ) {
     }
 
@@ -23,7 +23,17 @@ export class FieldMapService {
 
         properties.forEach(fieldName => {
             var field = item.elements[fieldName] as IField;
-            itemTyped[fieldName] = this.mapField(field, modularContent);
+            var propertyName;
+
+            // resolve value into a different 'property'
+            if (itemTyped.resolver){
+                propertyName = itemTyped.resolver(fieldName);
+            }
+            else{
+                propertyName = fieldName;
+            }
+
+            itemTyped[propertyName] = this.mapField(field, modularContent);
         });
 
         return itemTyped;
@@ -39,10 +49,17 @@ export class FieldMapService {
         else if (field.type.toString() === FieldType.asset.toString()) {
             return this.mapAssetsField(field);
         }
-        else {
-            console.log('Unsupported field type "' + field.type + '"');
-            //throw Error('Unsupported field type "' + field.type + '"')
+        else if (field.type.toString() === FieldType.number.toString()) {
+            return this.mapNumberField(field);
         }
+        else {
+            console.log(`Unsupported field type '${field.type}'`);
+            //throw Error(`Unsupported field type '${field.type}'`)
+        }
+    }
+
+    private mapNumberField(field: IField): NumberField {
+        return new NumberField(field.name, field.type, field.value);
     }
 
     private mapTextField(field: IField): TextField {

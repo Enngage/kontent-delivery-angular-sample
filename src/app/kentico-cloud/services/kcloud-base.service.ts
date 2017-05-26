@@ -10,7 +10,7 @@ import { ResponseSingle, ResponseMultiple } from '../models/responses';
 import { ICloudResponseSingle, ICloudResponseMultiple } from '../interfaces/cloud-responses';
 import { Pagination } from '../models/pagination.class';
 import { IItem } from '../interfaces/iitem.interface';
-import { IOption } from '../interfaces/ioption.interface';
+import { IQueryOption } from '../interfaces/iquery-option.interface';
 
 // services
 import { ItemMapService } from '../utility-services/item-map.service';
@@ -35,7 +35,7 @@ export abstract class KCloudBaseService {
         return this.config.apiEndpoint + '/' + this.config.projectId;
     }
 
-    private addOptionsToUrl(url: string, options?: IOption[]): string {
+    private addOptionsToUrl(url: string, options?: IQueryOption[]): string {
         if (options) {
             options.forEach(filter => {
                 if (url.indexOf('?') > -1) {
@@ -106,7 +106,7 @@ export abstract class KCloudBaseService {
         return new ResponseMultiple(items, pagination);
     }
 
-    protected getSingleItem<TItem extends IItem>(type: string, action: string, options?: IOption[]): Observable<ResponseSingle<TItem>> {
+    protected getSingleItem<TItem extends IItem>(type: string, action: string, options?: IQueryOption[]): Observable<ResponseSingle<TItem>> {
         var url = this.getBaseUrl() + action;
 
         url = this.addOptionsToUrl(url, options);
@@ -120,7 +120,7 @@ export abstract class KCloudBaseService {
             });
     }
 
-    protected getMultipleItems<TItem extends IItem>(type: string, action: string, options?: IOption[]): Observable<ResponseMultiple<TItem>> {
+    protected getMultipleItems<TItem extends IItem>(type: string, action: string, options?: IQueryOption[]): Observable<ResponseMultiple<TItem>> {
         var url = this.getBaseUrl() + action;
         var that = this;
 

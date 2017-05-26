@@ -1,14 +1,19 @@
-import { ISystem } from '../kentico-cloud/interfaces/isystem.interface';
-import { IItem } from '../kentico-cloud/interfaces/iitem.interface';
-import { TextField } from '../kentico-cloud/fields/field-types';
+import { BaseItem } from '../kentico-cloud/models/base-item.class';
+import { TextField, NumberField, AssetsField } from '../kentico-cloud/fields/field-types';
 
-export class Category implements IItem{ 
+export class Category extends BaseItem {
+  
+  public categoryName: TextField;
 
-  constructor(
-    public system: ISystem,
-    public elements: any,
-    public category_name: TextField,
-  ) {}
-
+  constructor() {
+    super({
+      resolver: (fieldName: string) => {
+        if (fieldName === 'category_name'){
+          return 'categoryName';
+        }
+        return fieldName;
+       }
+    })
+  }
 }
 

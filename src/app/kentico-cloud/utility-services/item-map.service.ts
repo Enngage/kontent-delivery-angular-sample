@@ -15,7 +15,7 @@ export class ItemMapService {
     private fieldMapService: FieldMapService;
 
     constructor(
-        private typeResolvers: TypeResolver[]
+        private typeResolvers: TypeResolver[],
     ) {
         this.fieldMapService = new FieldMapService(new TypeResolverService(typeResolvers));
     }
