@@ -4,4 +4,5 @@ export interface IField {
     name: string;
     type: FieldType;
     value: any;
+    modular_content?: string[]
 }

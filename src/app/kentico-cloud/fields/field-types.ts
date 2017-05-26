@@ -1,5 +1,6 @@
 import { FieldType } from './field-type';
 import { IField } from '../interfaces/ifield.interface';
+import { IItem } from '../interfaces/iitem.interface';
 import { IAsset, IMultipleChoiceOption } from './field-interfaces';
 import { AssetModel, MultipleChoiceOption } from './field-models';
 
@@ -55,13 +56,16 @@ export class DateTimeField implements IField {
 export class RichTextField implements IField {
 
     public text: string;
+    public items: IItem[] = [];
 
     constructor(
         public name: string,
         public type: FieldType,
-        public value: any
+        public value: any,
+        public modularItems: IItem[] 
     ) {
         this.text = value;
+        this.items = modularItems;
     };
 }
 

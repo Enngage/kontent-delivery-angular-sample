@@ -61,7 +61,7 @@ export class FieldMapService {
             return this.mapDateTimeField(field);
         }
         else if (field.type.toString() === FieldType.rich_text.toString()) {
-            return this.mapRichTextField(field);
+            return this.mapRichTextField(field, modularContent);
         }
         else {
             console.log(`Unsupported field type '${field.type}'`);
@@ -69,8 +69,22 @@ export class FieldMapService {
         }
     }
 
-    private mapRichTextField(field: IField): RichTextField {
-        return new RichTextField(field.name, field.type, field.value);
+    private mapRichTextField(field: IField, modularContent: any): RichTextField {
+        // get all modular content items nested in rich text
+        var modularItems: IItem[] = [];
+
+        if (field.modular_content){
+            if (Array.isArray(field.modular_content)){
+                field.modular_content.forEach(codename => {
+                    // get modular item
+                    var modularItem = this.mapFields(modularContent[codename], modularContent);
+
+                    modularItems.push(modularItem);
+                });
+            }
+        }
+
+        return new RichTextField(field.name, field.type, field.value, modularItems);
     }
 
     private mapDateTimeField(field: IField): DateTimeField {
