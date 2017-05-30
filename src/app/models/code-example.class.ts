@@ -1,5 +1,5 @@
-import { BaseItem } from '../kentico-cloud/models/base-item.class';
-import { TextField, NumberField, AssetsField, MultipleChoiceField } from '../kentico-cloud/fields/field-types';
+import { BaseItem } from '../../../index';
+import { TextField, NumberField, AssetsField, MultipleChoiceField } from '../../../index';
 
 // nested type models
 import { Author } from './author.class';

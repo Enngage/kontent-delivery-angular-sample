@@ -12,9 +12,8 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './modules/shared/not-found.component';
 
 // kentico cloud
-import { KenticoCloudModule } from './kentico-cloud/kentico-cloud.module';
+import { KCloudService } from '../../index';
 import { KCloudServiceProvider } from './setup/kcloud.service.provider';
-import { KCloudService } from './kentico-cloud/services/kcloud.service';
 
 // custom modules
 import { DashboardModule } from './modules/dashboard/dashboard.module';
@@ -48,9 +47,6 @@ import { MarkdownModule } from 'angular2-markdown';
     BrowserModule,
     FormsModule,
     HttpModule,
-
-    // kentico cloud
-    KenticoCloudModule,
 
     // Custom modules
     DashboardModule,

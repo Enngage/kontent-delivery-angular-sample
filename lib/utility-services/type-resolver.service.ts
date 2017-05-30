@@ -2,7 +2,6 @@ import { TypeResolver } from '../models/type-resolver.class';
 import { IItem } from '../interfaces/iitem.interface';
 import { System } from '../models/system.class';
 
-import { Character } from '../../models/character.class';
 export class TypeResolverService {
 
     constructor(

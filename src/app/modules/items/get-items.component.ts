@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
-// services
-import { KCloudService } from '../../kentico-cloud/services/kcloud.service';
-
 // models
 import { CodeExample } from '../../models/code-example.class';
 import { Character } from '../../models/character.class';
+
+// k cloud
 import {
+  KCloudService,
   LimitParameter, OrderAscParameter, OrderDescParameter, DepthParameter,
-  ElementsParameter, SkipParameter
-} from '../../kentico-cloud/models/parameters';
-import {
+  ElementsParameter, SkipParameter,
   EqualsFilter, AllFilter, AnyFilter, ContainsFilter, GreaterThanFilter,
   GreaterThanOrEqualFilter, Infilter, LessThanFilter, LessThanOrEqualFilter,
   RangeFilter
-} from '../../kentico-cloud/models/filters';
+} from '../../../../index';
 
 @Component({
   templateUrl: 'get-items.component.html',

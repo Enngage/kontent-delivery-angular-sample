@@ -1,28 +1,140 @@
-# KenticoCloudAngular2SampleApp
+# Kentico Cloud SDK for Angular 2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
+Developer's SDK for [KenticoCloud](https://kenticocloud.com/)
 
-## Development server
+#### Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+npm install kentico-cloud-angular2-sdk --save
+```
 
-## Code scaffolding
+#### Create models
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+```
+import { BaseItem } from 'kentico-cloud-angular2-sdk';
+import { TextField, NumberField, AssetsField, RichTextField, DateTimeField } from 'kentico-cloud-angular2-sdk';
 
-## Build
+export class Character extends BaseItem {
+  public name: TextField;
+  public someNumber: NumberField;
+  public someDateTime: DateTimeField;
+  public someRichText: RichTextField;
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+  public resolver = ((fieldName: string) => {
+    if (fieldName === 'somenumber') {
+      return 'someNumber';
+    }
+    else if(fieldName === 'somedate'){
+      return 'someDateTime';
+    }
+    else if(fieldName === 'somerichtext'){
+      return 'someRichText';
+    }
+  });
 
-## Running unit tests
+  constructor() {
+    super()
+  }
+}
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### Create factory provider
 
-## Running end-to-end tests
+```
+// core
+import { NgModule } from '@angular/core';
+import { Http } from '@angular/http';
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+// kentico cloud
+import { KCloudService, KCloudConfig, TypeResolver } from 'kentico-cloud-angular2-sdk';
 
-## Further help
+// models
+import { Character } from '../models/character.class';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+export function KCloudServiceFactory(http: Http) {
+
+    let apiUrl = 'https://deliver.kenticocloud.com';
+    let projectId = 'b52fa0db-84ec-4310-8f7c-3b94ed06644d';
+
+    let typeResolvers: TypeResolver[] = [
+        new TypeResolver("character", () => new Character()),
+    ];
+
+    return new KCloudService(
+        http,
+        new KCloudConfig(apiUrl, projectId, typeResolvers)
+    )
+};
+
+export var KCloudServiceProvider =
+    {
+        provide: KCloudService,
+        useFactory: KCloudServiceFactory,
+        deps: [Http]
+    };
+
+@NgModule({
+    imports: [
+    ],
+    declarations: [
+    ],
+    providers: [
+        KCloudService,
+    ],
+})
+export class KenticoCloudModule { }
+```
+
+#### Register in your app.module
+
+```
+import { KCloudServiceProvider } from './setup/kcloud.service.provider';
+
+@NgModule({
+  providers: [
+    KCloudServiceProvider
+  ],
+  bootstrap: [AppComponent],
+})
+```
+
+##### Use in your component
+
+```
+import { Component, OnInit } from '@angular/core';
+
+import { KCloudService } from 'kentico-cloud-angular2-sdk';
+
+// models
+import { Character } from '../../models/character.class';
+import { Author } from '../../models/author.class';
+import { Category } from '../../models/category.class';
+import { CodeExample } from '../../models/code-example.class';
+
+@Component({
+})
+export class SampleComponent implements OnInit {
+
+  private kCloudService: KCloudService;
+
+  constructor(
+    private kCloudService: KCloudService,
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.kCloudService = new KCloudService(
+      this.http,
+      new KCloudConfig(apiUrl, projectId, typeResolvers)
+    )
+
+    this.kCloudService.getItems("character").subscribe(response => console.log(response));
+  }
+}
+```
+
+
+##### Notes
+
+- Only `Delivery API` is supported
+

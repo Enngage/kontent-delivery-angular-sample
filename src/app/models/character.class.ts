@@ -1,5 +1,5 @@
-import { BaseItem } from '../kentico-cloud/models/base-item.class';
-import { TextField, NumberField, DateTimeField, RichTextField } from '../kentico-cloud/fields/field-types';
+import { BaseItem } from '../../../index';
+import { TextField, NumberField, AssetsField, RichTextField, DateTimeField } from '../../../index';
 
 export class Character extends BaseItem {
   public name: TextField;

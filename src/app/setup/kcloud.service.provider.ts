@@ -2,12 +2,8 @@
 import { NgModule } from '@angular/core';
 import { Http } from '@angular/http';
 
-// config
-import { KCloudConfig } from '../kentico-cloud/config/kcloud.config';
-import { TypeResolver } from '../kentico-cloud/models/type-resolver.class';
-
-// services
-import { KCloudService } from '../kentico-cloud/services/kcloud.service';
+// kentico cloud
+import { KCloudService, KCloudConfig, TypeResolver } from '../../../index';
 
 // models
 import { Character } from '../models/character.class';
