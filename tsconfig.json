@@ -1,10 +1,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "./dist/out-tsc",
     "baseUrl": "src",
     "sourceMap": true,
-    "declaration": true,
+    "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -16,10 +16,5 @@
       "es2016",
       "dom"
     ]
- },
-  "include": [
-    "index.ts",
-    "lib/**/*",
-    "spec/**/*"
-  ]
+  }
 }

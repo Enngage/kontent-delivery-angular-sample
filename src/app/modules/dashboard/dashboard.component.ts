@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { KCloudService, KCloudConfig, TypeResolver } from '../../../../index';
+import { KCloudService, KCloudConfig, TypeResolver } from 'kentico-cloud-angular2-sdk';
 
 // models
 import { Character } from '../../models/character.class';

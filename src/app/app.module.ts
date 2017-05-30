@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './modules/shared/not-found.component';
 
 // kentico cloud
-import { KCloudService } from '../../index';
+import { KCloudService } from 'kentico-cloud-angular2-sdk';
 import { KCloudServiceProvider } from './setup/kcloud.service.provider';
 
 // custom modules

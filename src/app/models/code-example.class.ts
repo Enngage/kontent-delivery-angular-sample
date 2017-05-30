@@ -1,5 +1,5 @@
-import { BaseItem } from '../../../index';
-import { TextField, NumberField, AssetsField, MultipleChoiceField } from '../../../index';
+import { BaseItem } from 'kentico-cloud-angular2-sdk';
+import { TextField, NumberField, AssetsField, MultipleChoiceField } from 'kentico-cloud-angular2-sdk';
 
 // nested type models
 import { Author } from './author.class';
