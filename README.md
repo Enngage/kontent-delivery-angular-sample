@@ -1,6 +1,6 @@
-# KenticoCloudSampleAngularApp
+# Kentico Cloud Sample Angular App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
+This project showcases the use of `Kentico Cloud Delivery Typescript SDK` [![npm version](https://badge.fury.io/js/kentico-cloud-delivery-typescript-sdk.svg)] (https://www.npmjs.com/package/kentico-cloud-delivery-typescript-sdk) in an `Angular` app generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
 
 ## Development server
 
