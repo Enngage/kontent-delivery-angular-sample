@@ -1,9 +1,5 @@
-// core
-import { NgModule } from '@angular/core';
-import { Http } from '@angular/http';
-
 // kentico cloud
-import { KCloudService, KCloudConfig, TypeResolver } from 'kentico-cloud-angular2-sdk';
+import { DeliveryClient, DeliveryClientConfig, TypeResolver } from 'kentico-cloud-delivery-typescript-sdk';
 
 // models
 import { Character } from '../models/character.class';
@@ -11,7 +7,7 @@ import { Author } from '../models/author.class';
 import { Category } from '../models/category.class';
 import { CodeExample } from '../models/code-example.class';
 
-export function KCloudServiceFactory(http: Http) {
+export function DeliveryClientFactory() {
 
     let apiUrl = 'https://deliver.kenticocloud.com';
     let projectId = 'b52fa0db-84ec-4310-8f7c-3b94ed06644d';
@@ -23,26 +19,14 @@ export function KCloudServiceFactory(http: Http) {
         new TypeResolver("character", () => new Character()),
     ];
 
-    return new KCloudService(
-        http,
-        new KCloudConfig(apiUrl, projectId, typeResolvers)
+    return new DeliveryClient(
+        new DeliveryClientConfig(apiUrl, projectId, typeResolvers)
     )
 };
 
-export var KCloudServiceProvider =
+export var DeliveryClientProvider =
     {
-        provide: KCloudService,
-        useFactory: KCloudServiceFactory,
-        deps: [Http]
+        provide: DeliveryClient,
+        useFactory: DeliveryClientFactory,
+        deps: []
     };
-
-@NgModule({
-    imports: [
-    ],
-    declarations: [
-    ],
-    providers: [
-        KCloudService,
-    ],
-})
-export class KenticoCloudModule { }

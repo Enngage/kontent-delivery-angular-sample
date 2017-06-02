@@ -1,7 +1,6 @@
-import { BaseItem } from 'kentico-cloud-angular2-sdk';
-import { TextField, NumberField, AssetsField, RichTextField, DateTimeField } from 'kentico-cloud-angular2-sdk';
+import { ContentItem, TextField, NumberField, DateTimeField, RichTextField } from 'kentico-cloud-delivery-typescript-sdk';
 
-export class Character extends BaseItem {
+export class Character extends ContentItem {
   public name: TextField;
   public someNumber: NumberField;
   public someDateTime: DateTimeField;

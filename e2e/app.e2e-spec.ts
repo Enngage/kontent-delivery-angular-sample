@@ -1,14 +1,16 @@
-import { KenticoCloudAngular2SampleAppPage } from './app.po';
+import { KenticoCloudSampleAngularAppPage } from './app.po';
 
-describe('kentico-cloud-angular2-sample-app App', () => {
-  let page: KenticoCloudAngular2SampleAppPage;
+describe('kentico-cloud-sample-angular-app App', () => {
+  let page: KenticoCloudSampleAngularAppPage;
 
   beforeEach(() => {
-    page = new KenticoCloudAngular2SampleAppPage();
+    page = new KenticoCloudSampleAngularAppPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', done => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    page.getParagraphText()
+      .then(msg => expect(msg).toEqual('Welcome to app!!'))
+      .then(done, done.fail);
   });
 });

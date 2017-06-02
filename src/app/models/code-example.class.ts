@@ -1,11 +1,10 @@
-import { BaseItem } from 'kentico-cloud-angular2-sdk';
-import { TextField, NumberField, AssetsField, MultipleChoiceField } from 'kentico-cloud-angular2-sdk';
+import { ContentItem, TextField, NumberField, DateTimeField, RichTextField, MultipleChoiceField } from 'kentico-cloud-delivery-typescript-sdk';
 
 // nested type models
 import { Author } from './author.class';
 import { Category } from './category.class';
 
-export class CodeExample extends BaseItem {
+export class CodeExample extends ContentItem {
   
   public title: TextField;
   public author: Author;

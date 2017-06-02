@@ -1,7 +1,6 @@
-import { BaseItem } from 'kentico-cloud-angular2-sdk';
-import { TextField, NumberField, AssetsField } from 'kentico-cloud-angular2-sdk';
+import { ContentItem, TextField } from 'kentico-cloud-delivery-typescript-sdk';
 
-export class Category extends BaseItem {
+export class Category extends ContentItem {
   
   public categoryName: TextField;
 

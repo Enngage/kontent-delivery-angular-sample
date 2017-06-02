@@ -1,7 +1,6 @@
-import { BaseItem } from 'kentico-cloud-angular2-sdk';
-import { TextField, NumberField, AssetsField } from 'kentico-cloud-angular2-sdk';
+import { ContentItem, TextField, AssetsField } from 'kentico-cloud-delivery-typescript-sdk';
 
-export class Author extends BaseItem {
+export class Author extends ContentItem {
   public name: TextField;
   public image: AssetsField;
 }

@@ -1,6 +1,6 @@
-import { browser, element, by } from 'protractor';
+import { browser, by, element } from 'protractor';
 
-export class KenticoCloudAngular2SampleAppPage {
+export class KenticoCloudSampleAngularAppPage {
   navigateTo() {
     return browser.get('/');
   }
