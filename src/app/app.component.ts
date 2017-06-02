@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { DeliveryClient, LimitParameter, OrderParameter, SortOrder } from 'kentico-cloud-delivery-typescript-sdk';
 
-import { Character } from './models/character.class';
+import { Actor } from './models/actor.class';
+import { Movie } from './models/movie.class';
 
 @Component({
   selector: 'app-root',
@@ -10,24 +11,32 @@ import { Character } from './models/character.class';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Kentico Cloud Angular';
+
+  private readonly actorType = 'actor';
+  private readonly movieType = 'movie';
+
+  private title = 'Kentico Cloud Angular';
+
+  private latestMovies: Movie[];
+  private actor: Actor[];
 
   constructor(
     private deliveryClient: DeliveryClient
   ) { }
 
   ngOnInit() {
-    // get 'top 10' latest modified items of all types 
-    this.deliveryClient.getItems(null,
+    // get 'top 3' latest movies
+    this.deliveryClient.getItems<Movie>(
+      this.movieType,
       [
-        new LimitParameter(10),
-        new OrderParameter("system.last_modified", SortOrder.desc)
-      ]).subscribe(response => console.log(response));
-
-    // get items of 'Character' type
-    this.deliveryClient.getItems<Character>('character').subscribe(response => console.log(response));
+        new LimitParameter(3),
+        new OrderParameter("elements.released", SortOrder.desc)
+      ]).subscribe(response => {
+        console.log(response);
+        this.latestMovies = response.items;
+      });
 
     // get single item of 'Character' type
-    this.deliveryClient.getItem<Character>('character', 'rimmer').subscribe(response => console.log(response));
+    this.deliveryClient.getItem<Actor>('character', 'tom_hardy').subscribe(response => console.log(response));
   }
 }

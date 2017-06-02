@@ -1,0 +1,17 @@
+.mdl-layout__content{
+    padding: 15px 40px;
+}
+
+.demo-list-action .mdl-list{
+    text-align: center;
+}
+
+.demo-card-wide{
+    margin-top: 20px;
+    width: 400px;
+}
+
+.subtle{
+    font-size: 0.9em;
+    color: #888888;
+}

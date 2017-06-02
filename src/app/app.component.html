@@ -1,9 +1,41 @@
-<!--The whole content below can be removed with the new code.-->
-<div>
-  <h1>
-    Welcome to {{title}}
-  </h1>
-  <p>
-    Turn on <strong>`Developer's console`</strong> of your web browser to see the results from Kentico Cloud
-  </p>
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">{{title}}</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+    </div>
+  </header>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+
+      <h1>
+        Latest movies
+      </h1>
+
+      <div *ngIf="latestMovies">
+        <div *ngFor="let movie of latestMovies">
+          <h4>{{movie.title.text}}</h4>
+          <p [innerHtml]="movie.plot.text"></p>
+          <p class="subtle">
+            {{movie.released.datetime.getFullYear()}}, {{movie.length.value}} min ({{movie.getCategoriesText()}})
+          </p>
+          <p>
+            <strong>Stars:</strong> {{movie.getStarsText()}}
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="latestMovies" class="demo-list-action mdl-list">
+        <div *ngFor="let movie of latestMovies" class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            <img class="material-icons mdl-list__item-avatar" src="{{movie.poster.assets[0].url}}"/>
+              <span>{{movie.title.text}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
