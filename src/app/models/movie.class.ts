@@ -26,10 +26,7 @@ export class Movie extends ContentItem {
     if (!this.stars) {
       return null;
     }
-
-console.log(this);
- return "a";
-    //return this.stars.map(actor => actor.getFullName()).join(', ');
+    return this.stars.map(actor => actor.getFullName()).join(', ');
   }
 }
 

@@ -8,10 +8,10 @@ export class Actor extends ContentItem {
   constructor() {
     super({
       resolver: (fieldName: string) => {
-        if (fieldName === 'firstname') {
-          return 'firstName'; // binds 'firstname' response from Kentico cloud to 'firstName' property of this class
+        if (fieldName === 'first_name') {
+          return 'firstName'; // binds 'first_name' response from Kentico cloud to 'firstName' property of this class
         }
-        if (fieldName === 'lastname') {
+        if (fieldName === 'last_name') {
           return 'lastName';
         }
       }
@@ -19,7 +19,7 @@ export class Actor extends ContentItem {
   }
 
   public getFullName(): string {
-    return `${this.firstName} ${this.lastName}`;
+    return `${this.firstName.text} ${this.lastName.text}`;
   }
 }
 

@@ -25,12 +25,13 @@ export class AppComponent {
   ) { }
 
   ngOnInit() {
+
     // get 'top 3' latest movies
     this.deliveryClient.getItems<Movie>(
       this.movieType,
       [
         new LimitParameter(3),
-        new OrderParameter("elements.released", SortOrder.desc)
+        new OrderParameter("elements.title", SortOrder.desc)
       ]).subscribe(response => {
         console.log(response);
         this.latestMovies = response.items;

@@ -7,7 +7,6 @@ import { Movie } from '../models/movie.class';
 
 export function DeliveryClientFactory() {
 
-    let apiUrl = 'https://deliver.kenticocloud.com';
     let projectId = 'da5abe9f-fdad-4168-97cd-b3464be2ccb9';
 
     let typeResolvers: TypeResolver[] = [
@@ -16,7 +15,7 @@ export function DeliveryClientFactory() {
     ];
 
     return new DeliveryClient(
-        new DeliveryClientConfig(apiUrl, projectId, typeResolvers)
+        new DeliveryClientConfig(projectId, typeResolvers)
     )
 };
 
