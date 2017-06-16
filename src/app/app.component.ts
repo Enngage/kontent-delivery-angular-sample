@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DeliveryClient, LimitParameter, OrderParameter, SortOrder } from 'kentico-cloud-delivery-typescript-sdk';
+import { DeliveryClient, SortOrder } from 'kentico-cloud-delivery-typescript-sdk';
 
 import { Actor } from './models/actor.class';
 import { Movie } from './models/movie.class';
@@ -27,17 +27,19 @@ export class AppComponent {
   ngOnInit() {
 
     // get 'top 3' latest movies
-    this.deliveryClient.getItems<Movie>(
-      this.movieType,
-      [
-        new LimitParameter(3),
-        new OrderParameter("elements.title", SortOrder.desc)
-      ]).subscribe(response => {
+    this.deliveryClient.items<Movie>()
+      .type(this.movieType)
+      .limitParameter(3)
+      .orderParameter("elements.title", SortOrder.desc)
+      .get()
+      .subscribe(response => {
         console.log(response);
         this.latestMovies = response.items;
       });
 
     // get single item of 'Character' type
-    this.deliveryClient.getItem<Actor>('character', 'tom_hardy').subscribe(response => console.log(response));
+    this.deliveryClient.item<Actor>('tom_hardy')
+      .get()
+      .subscribe(response => console.log(response));
   }
 }

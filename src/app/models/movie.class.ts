@@ -14,6 +14,14 @@ export class Movie extends ContentItem {
   public category: MultipleChoiceField;
   public stars: Actor[];
 
+  constructor() {
+    super({
+      urlSlugResolver: (item, urlSlug) => {
+        return 'testUrl/' + urlSlug;
+      }
+    })
+  }
+
   getCategoriesText(): string {
     if (!this.category) {
       return null;
