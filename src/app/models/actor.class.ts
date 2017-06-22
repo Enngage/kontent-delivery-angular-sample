@@ -1,13 +1,13 @@
-import { ContentItem, TextField, AssetsField } from 'kentico-cloud-delivery-typescript-sdk';
+import { ContentItem, Fields} from 'kentico-cloud-delivery-typescript-sdk';
 
 export class Actor extends ContentItem {
-  public firstName: TextField;
-  public lastName: TextField;
-  public photo: AssetsField;
+  public firstName: Fields.TextField;
+  public lastName: Fields.TextField;
+  public photo: Fields.AssetsField;
 
   constructor() {
     super({
-      resolver: (fieldName: string) => {
+      propertyResolver: (fieldName: string) => {
         if (fieldName === 'first_name') {
           return 'firstName'; // binds 'first_name' response from Kentico cloud to 'firstName' property of this class
         }

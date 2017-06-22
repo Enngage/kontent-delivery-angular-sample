@@ -1,17 +1,14 @@
-import {
-  ContentItem, TextField, NumberField, DateTimeField,
-  RichTextField, AssetsField, MultipleChoiceField
-} from 'kentico-cloud-delivery-typescript-sdk';
+import { ContentItem, Fields } from 'kentico-cloud-delivery-typescript-sdk';
 
 import { Actor } from './actor.class';
 
 export class Movie extends ContentItem {
-  public title: TextField;
-  public plot: RichTextField;
-  public released: DateTimeField;
-  public length: NumberField;
-  public poster: AssetsField;
-  public category: MultipleChoiceField;
+  public title: Fields.TextField;
+  public plot: Fields.RichTextField;
+  public released: Fields.DateTimeField;
+  public length: Fields.NumberField;
+  public poster: Fields.AssetsField;
+  public category: Fields.MultipleChoiceField;
   public stars: Actor[];
 
   constructor() {
