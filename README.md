@@ -6,6 +6,14 @@ This project showcases the use of `Kentico Cloud Delivery Typescript SDK`
 
 in an `Angular` app generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
 
+## Installation
+
+Clone/download the repository, navigate to the root folder and install node packages by running:
+
+`npm i`
+
+Once packages are downloaded, you can use Angular commands such as `ng serve` to run the Angular application.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
