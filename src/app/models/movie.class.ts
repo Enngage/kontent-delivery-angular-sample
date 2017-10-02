@@ -13,8 +13,8 @@ export class Movie extends ContentItem {
 
   constructor() {
     super({
-      urlSlugResolver: (item, urlSlug) => {
-        return 'testUrl/' + urlSlug;
+      linkResolver: (link) => {
+        return 'movies/' + link.url_slug;
       }
     })
   }
