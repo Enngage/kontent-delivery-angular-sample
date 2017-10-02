@@ -1,6 +1,6 @@
 {
   "name": "kentico-cloud-sample-angular-app",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "license": "MIT",
   "author": "richard sustek",
   "description": "Sample Angular application with Kentico Cloud Delivery TypeScript SDK",
