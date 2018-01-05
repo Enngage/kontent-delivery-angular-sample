@@ -1,17 +1,19 @@
-.mdl-layout__content{
-    padding: 15px 40px;
+.kc-error {
+    background-color: #b81717;
+    color: #ffffff;
+    padding: 12px 20px;
+    font-size: 17px;
+    margin-top: 15px;
 }
 
-.demo-list-action .mdl-list{
-    text-align: center;
+.kc-info{
+    background-color: #06437c;
+    color: #ffffff;
+    padding: 12px 20px;
+    font-size: 17px;
+    margin-top: 15px;
 }
 
-.demo-card-wide{
-    margin-top: 20px;
-    width: 400px;
-}
-
-.subtle{
-    font-size: 0.9em;
-    color: #888888;
+.kc-link {
+    color: #ffffff;
 }

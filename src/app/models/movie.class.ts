@@ -16,7 +16,7 @@ export class Movie extends ContentItem {
       linkResolver: (link) => {
         return 'movies/' + link.url_slug;
       }
-    })
+    });
   }
 
   getCategoriesText(): string {
