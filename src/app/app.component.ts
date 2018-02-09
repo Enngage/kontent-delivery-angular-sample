@@ -54,21 +54,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   loadData(): void {
-    this.deliveryClient
-      .item<Movie>('warrior')
-      .depthParameter(5)
-      .get()
-      .subscribe(response => {
-        console.log(response);
-        console.log(response.debug.rawResponse.response.modular_content['tom_hardy'].elements.first_name.value);
-        console.log(response.item.stars[0].firstName.text);
-      });
-	  
-	  if (this.title) {
-		  return;
-		)  
-		  
-
     // get 'top 3' latest movies
     this.deliveryClient
       .items<Movie>()
