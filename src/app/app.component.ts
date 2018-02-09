@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   CloudError,
   ContentItem,
@@ -6,16 +6,16 @@ import {
   DeliveryClient,
   SortOrder,
   TaxonomyGroup
-} from "kentico-cloud-delivery-typescript-sdk";
+} from 'kentico-cloud-delivery-typescript-sdk';
 
-import { Actor } from "./models/actor.class";
-import { Movie } from "./models/movie.class";
-import { Subject } from "rxjs/Rx";
+import { Actor } from './models/actor.class';
+import { Movie } from './models/movie.class';
+import { Subject } from 'rxjs/Rx';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
   /**
@@ -29,10 +29,10 @@ export class AppComponent implements OnInit, OnDestroy {
    */
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  private readonly actorType = "actor";
-  private readonly movieType = "movie";
+  private readonly actorType = 'actor';
+  private readonly movieType = 'movie';
 
-  private readonly title = "Kentico Cloud Delivery TypeScript/JavaScript SDK sample";
+  private readonly title = 'Kentico Cloud Delivery TypeScript/JavaScript SDK sample';
 
   private error?: string;
 
@@ -59,7 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .items<Movie>()
       .type(this.movieType)
       .limitParameter(3)
-      .orderParameter("elements.title", SortOrder.desc)
+      .orderParameter('elements.title', SortOrder.desc)
       .get()
       .takeUntil(this.ngUnsubscribe)
       .subscribe(
@@ -72,7 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // get single item of 'Character' type
     this.deliveryClient
-      .item<Actor>("tom_hardy")
+      .item<Actor>('tom_hardy')
       .get()
       .takeUntil(this.ngUnsubscribe)
       .subscribe(
@@ -129,11 +129,11 @@ export class AppComponent implements OnInit, OnDestroy {
         error.message
       }' for request with id = '${error.request_id}'`;
     } else {
-      this.error = "Unknown error occured";
+      this.error = 'Unknown error occured';
     }
   }
 
   private getTaxonomyTerms(taxonomy: TaxonomyGroup): string {
-    return taxonomy.terms.map(term => term.name).join(", ");
+    return taxonomy.terms.map(term => term.name).join(', ');
   }
 }
