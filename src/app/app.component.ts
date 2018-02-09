@@ -1,27 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import {
   CloudError,
   ContentItem,
   ContentType,
   DeliveryClient,
   SortOrder,
-  TaxonomyGroup,
-} from 'kentico-cloud-delivery-typescript-sdk';
+  TaxonomyGroup
+} from "kentico-cloud-delivery-typescript-sdk";
 
-import { Actor } from './models/actor.class';
-import { Movie } from './models/movie.class';
+import { Actor } from "./models/actor.class";
+import { Movie } from "./models/movie.class";
+import { Subject } from "rxjs/Rx";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+  /**
+   * Important - used to unsubsribe ALL subscriptions when component is destroyed. This ensures that requests are cancelled
+   * when navigating away from the component.
+   * See for more details: https://stackoverflow.com/questions/38008334/angular-rxjs-when-should-i-unsubscribe-from-subscription
+   * Usage: use 'takeUntil(this.ngUnsubscribe)' for all subscriptions.
+   * Example: this.myThingService.getThings()
+   *       .takeUntil(this.ngUnsubscribe)
+   *      .subscribe(things => console.log(things));
+   */
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  private readonly actorType = 'actor';
-  private readonly movieType = 'movie';
+  private readonly actorType = "actor";
+  private readonly movieType = "movie";
 
-  private readonly title = 'Kentico Cloud Delivery TypeScript/JavaScript SDK sample';
+  private readonly title = "Kentico Cloud Delivery TypeScript/JavaScript SDK sample";
 
   private error?: string;
 
@@ -31,64 +42,98 @@ export class AppComponent implements OnInit {
   private variousItems?: ContentItem[];
   private taxonomies?: TaxonomyGroup[];
 
-  constructor(
-    private deliveryClient: DeliveryClient
-  ) { }
+  constructor(private deliveryClient: DeliveryClient) {}
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
+  loadData(): void {
     // get 'top 3' latest movies
-    this.deliveryClient.items<Movie>()
+    this.deliveryClient
+      .items<Movie>()
       .type(this.movieType)
       .limitParameter(3)
-      .orderParameter('elements.title', SortOrder.desc)
+      .orderParameter("elements.title", SortOrder.desc)
       .get()
-      .subscribe(response => {
-        console.log(response);
-        this.latestMovies = response.items;
-      }, error => this.handleCloudError(error));
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.latestMovies = response.items;
+        },
+        error => this.handleCloudError(error)
+      );
 
     // get single item of 'Character' type
-    this.deliveryClient.item<Actor>('tom_hardy')
+    this.deliveryClient
+      .item<Actor>("tom_hardy")
       .get()
-      .subscribe(response => {
-        console.log(response);
-        this.actor = response.item;
-      }, error => this.handleCloudError(error));
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.actor = response.item;
+        },
+        error => this.handleCloudError(error)
+      );
 
     // get any possible item
-    this.deliveryClient.items<ContentItem>()
+    this.deliveryClient
+      .items<ContentItem>()
       .get()
-      .subscribe(response => {
-        console.log(response);
-        this.variousItems = response.items;
-      }, error => this.handleCloudError(error));
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.variousItems = response.items;
+        },
+        error => this.handleCloudError(error)
+      );
 
     // content types
-    this.deliveryClient.types()
+    this.deliveryClient
+      .types()
       .get()
-      .subscribe(response => {
-        console.log(response);
-        this.types = response.types;
-      }, error => this.handleCloudError(error));
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.types = response.types;
+        },
+        error => this.handleCloudError(error)
+      );
 
     // taxonomies
-    this.deliveryClient.taxonomies()
+    this.deliveryClient
+      .taxonomies()
       .get()
-      .subscribe(response => {
-        console.log(response);
-        this.taxonomies = response.taxonomies;
-      }, error => this.handleCloudError(error));
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.taxonomies = response.taxonomies;
+        },
+        error => this.handleCloudError(error)
+      );
   }
 
   private handleCloudError(error: CloudError | any): void {
     if (error instanceof CloudError) {
-      this.error = `Kentico Cloud Error occured with message: '${error.message}' for request with id = '${error.request_id}'`;
+      this.error = `Kentico Cloud Error occured with message: '${
+        error.message
+      }' for request with id = '${error.request_id}'`;
     } else {
-      this.error = 'Unknown error occured';
+      this.error = "Unknown error occured";
     }
   }
 
   private getTaxonomyTerms(taxonomy: TaxonomyGroup): string {
-    return taxonomy.terms.map(term => term.name).join(', ');
+    return taxonomy.terms.map(term => term.name).join(", ");
   }
 }

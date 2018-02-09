@@ -17,3 +17,12 @@
 .kc-link {
     color: #ffffff;
 }
+
+.kc-reload-data {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 6px 8px;
+    cursor: pointer;
+    background-color: #06437c;
+    color: #ffffff;
+}
