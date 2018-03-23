@@ -1,7 +1,5 @@
-// kentico cloud
-import { DeliveryClient, DeliveryClientConfig, TypeResolver } from 'kentico-cloud-delivery-typescript-sdk';
+import { DeliveryClient, DeliveryClientConfig, TypeResolver } from 'kentico-cloud-delivery-typescript-sdk/_bundles';
 
-// models
 import { Actor } from '../models/actor.class';
 import { Movie } from '../models/movie.class';
 

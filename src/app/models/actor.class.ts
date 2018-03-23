@@ -1,4 +1,4 @@
-import { ContentItem, Fields} from 'kentico-cloud-delivery-typescript-sdk';
+import { ContentItem, Fields} from 'kentico-cloud-delivery-typescript-sdk/_bundles';
 
 export class Actor extends ContentItem {
   public firstName: Fields.TextField;
