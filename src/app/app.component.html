@@ -18,8 +18,13 @@
 </div>
 
 <div class="kc-info">
-  Open your
-  <strong>browser console</strong> to see the strongly typed responses
+  <p>
+    This Angular 5 app loads data from Kentico Cloud project.
+  </p>
+  <p>
+    Open your
+    <strong>browser console</strong> to see the strongly typed responses.
+  </p>
 </div>
 
 <div class="kc-info">
@@ -67,8 +72,10 @@
 </ul>
 
 <h2>
-    Taxonomies:
-  </h2>
-  <ul>
-    <li *ngFor="let taxonomy of taxonomies">{{ taxonomy.system.name }} -> <em> {{ getTaxonomyTerms(taxonomy) }}</em></li>
-  </ul>
+  Taxonomies:
+</h2>
+<ul>
+  <li *ngFor="let taxonomy of taxonomies">{{ taxonomy.system.name }} ->
+    <em> {{ getTaxonomyTerms(taxonomy) }}</em>
+  </li>
+</ul>

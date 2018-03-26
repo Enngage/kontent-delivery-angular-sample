@@ -33,15 +33,15 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly actorType = 'actor';
   private readonly movieType = 'movie';
 
-  private readonly title = 'Kentico Cloud Delivery TypeScript/JavaScript SDK sample';
+  public readonly title = 'Kentico Cloud Delivery TypeScript/JavaScript SDK sample';
 
-  private error?: string;
+  public error?: string;
 
-  private latestMovies?: Movie[];
-  private actor?: Actor;
-  private types?: ContentType[];
-  private variousItems?: ContentItem[];
-  private taxonomies?: TaxonomyGroup[];
+  public latestMovies?: Movie[];
+  public actor?: Actor;
+  public types?: ContentType[];
+  public variousItems?: ContentItem[];
+  public taxonomies?: TaxonomyGroup[];
 
   constructor( private deliveryClient: DeliveryClient) { }
 
