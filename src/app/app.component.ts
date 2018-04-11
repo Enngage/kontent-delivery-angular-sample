@@ -6,9 +6,9 @@ import {
   DeliveryClient,
   SortOrder,
   TaxonomyGroup,
-  DeliveryClientConfig,
-} from 'kentico-cloud-delivery-typescript-sdk/_bundles';
-import { Subject } from 'rxjs/Subject';
+} from 'kentico-cloud-delivery-typescript-sdk';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { Actor } from './models/actor.class';
 import { Movie } from './models/movie.class';
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public variousItems?: ContentItem[];
   public taxonomies?: TaxonomyGroup[];
 
-  constructor( private deliveryClient: DeliveryClient) { }
+  constructor(private deliveryClient: DeliveryClient) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -59,20 +59,25 @@ export class AppComponent implements OnInit, OnDestroy {
     this.deliveryClient
       .item<Movie>('warrior')
       .depthParameter(5)
-      .get()
+      .getObservable()
+      .pipe(
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe(response => {
         console.log(response);
-        console.log(response.debug.rawResponse.response.modular_content['tom_hardy'].elements.first_name.value);
         console.log(response.item.stars[0].firstName.text);
       });
+
     // get 'top 3' latest movies
     this.deliveryClient
       .items<Movie>()
       .type(this.movieType)
       .limitParameter(3)
       .orderParameter('elements.title', SortOrder.desc)
-      .get()
-      //  .takeUntil(this.ngUnsubscribe)
+      .getObservable()
+      .pipe(
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe(
         response => {
           console.log(response);
@@ -84,8 +89,10 @@ export class AppComponent implements OnInit, OnDestroy {
     // get single item of 'Character' type
     this.deliveryClient
       .item<Actor>('tom_hardy')
-      .get()
-      //    .takeUntil(this.ngUnsubscribe)
+      .getObservable()
+      .pipe(
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe(
         response => {
           console.log(response);
@@ -97,8 +104,10 @@ export class AppComponent implements OnInit, OnDestroy {
     // get any possible item
     this.deliveryClient
       .items<ContentItem>()
-      .get()
-      //  .takeUntil(this.ngUnsubscribe)
+      .getObservable()
+      .pipe(
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe(
         response => {
           console.log(response);
@@ -110,8 +119,10 @@ export class AppComponent implements OnInit, OnDestroy {
     // content types
     this.deliveryClient
       .types()
-      .get()
-      //    .takeUntil(this.ngUnsubscribe)
+      .getObservable()
+      .pipe(
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe(
         response => {
           console.log(response);
@@ -123,8 +134,10 @@ export class AppComponent implements OnInit, OnDestroy {
     // taxonomies
     this.deliveryClient
       .taxonomies()
-      .get()
-      //   .takeUntil(this.ngUnsubscribe)
+      .getObservable()
+      .pipe(
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe(
         response => {
           console.log(response);
@@ -138,7 +151,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (error instanceof CloudError) {
       this.error = `Kentico Cloud Error occured with message: '${
         error.message
-        }' for request with id = '${error.request_id}'`;
+        }' for request with id = '${error.requestId}'`;
     } else {
       this.error = 'Unknown error occured';
     }

@@ -1,4 +1,4 @@
-import { ContentItem, Fields } from 'kentico-cloud-delivery-typescript-sdk/_bundles';
+import { ContentItem, Fields } from 'kentico-cloud-delivery-typescript-sdk';
 
 import { Actor } from './actor.class';
 
@@ -14,7 +14,7 @@ export class Movie extends ContentItem {
   constructor() {
     super({
       linkResolver: (link) => {
-        return 'movies/' + link.url_slug;
+        return 'movies/' + link.urlSlug;
       }
     });
   }
