@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
+    "baseUrl": ".",
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -11,6 +12,11 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "paths": {
+      "kentico-cloud-delivery-typescript-sdk": [
+        "node_modules/kentico-cloud-delivery-typescript-sdk/_bundles/kentico-cloud-delivery-sdk.browser.umd.min.js"
+      ]
+    },
     "lib": [
       "es2017",
       "dom"
