@@ -13,8 +13,8 @@
       "node_modules/@types"
     ],
     "paths": {
-      "kentico-cloud-delivery-typescript-sdk": [
-        "node_modules/kentico-cloud-delivery-typescript-sdk/_bundles/kentico-cloud-delivery-sdk.browser.umd.min.js"
+      "kentico-cloud-delivery": [
+        "node_modules/kentico-cloud-delivery/_bundles/kentico-cloud-delivery-sdk.browser.umd.min.js"
       ]
     },
     "lib": [

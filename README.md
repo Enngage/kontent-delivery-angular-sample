@@ -1,13 +1,13 @@
-This is an example Angular 6 application with [Kentico Cloud Delivery Typescript SDK](https://github.com/Enngage/KenticoCloudDeliveryTypeScriptSDK)
+This is an example Angular 6 application with [Kentico Cloud Delivery SDK](https://github.com/Enngage/kentico-cloud-js)
 
-## Angular 6 consideration
+## Angular 6 support
 
-Currently, there is an issue with Angular 6 CLI as it statically tries to resolve all requires. Since `Kentico Cloud Delivery Typescript SDK` supports both `node` and `browsers` the build fails in Angular 6 application due to missing node.js API. To get around this, add following to your `ts.config.json` file:
+Currently, there is an issue with Angular 6 CLI as it statically tries to resolve all requires. Since `Kentico Cloud Delivery` supports both `node` and `browsers` the build fails in Angular 6 application due to missing node.js API. To get around this, add following to your `ts.config.json` file:
 
 ```
 "paths": {
-    "kentico-cloud-delivery-typescript-sdk": [
-        "node_modules/kentico-cloud-delivery-typescript-sdk/_bundles/kentico-cloud-delivery-sdk.browser.umd.min.js"
+    "kentico-cloud-delivery": [
+        "node_modules/kentico-cloud-delivery/_bundles/kentico-cloud-delivery-sdk.browser.umd.min.js"
     ]
 },
 ```

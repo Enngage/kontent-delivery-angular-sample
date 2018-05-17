@@ -6,7 +6,7 @@ import {
   DeliveryClient,
   SortOrder,
   TaxonomyGroup,
-} from 'kentico-cloud-delivery-typescript-sdk';
+} from 'kentico-cloud-delivery';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

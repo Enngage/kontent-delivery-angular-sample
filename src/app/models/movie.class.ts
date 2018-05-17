@@ -1,4 +1,4 @@
-import { ContentItem, Fields } from 'kentico-cloud-delivery-typescript-sdk';
+import { ContentItem, Fields } from 'kentico-cloud-delivery';
 
 import { Actor } from './actor.class';
 
