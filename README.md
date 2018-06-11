@@ -21,3 +21,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Stackblitz demo (old) (Angular 5 & SDK 3.x)
 
 Head over to the [Live demo on Stackblitz](https://stackblitz.com/edit/kentico-cloud-angular-5-demo) to explore the app directly in your browser.
+
+[![Analytics](https://ga-beacon.appspot.com/UA-69014260-4/Enngage/KenticoCloudSampleAngularApp?pixel)](https://github.com/igrigorik/ga-beacon)
+
