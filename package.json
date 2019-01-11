@@ -25,7 +25,7 @@
     "@angular/router": "6.0.6",
     "copy-webpack-plugin": "4.5.1",
     "core-js": "2.5.7",
-    "kentico-cloud-delivery": "4.1.0",
+    "kentico-cloud-delivery": "4.2.0",
     "rxjs": "6.2.1",
     "zone.js": "0.8.26"
   },
