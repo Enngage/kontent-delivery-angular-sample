@@ -1,12 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  CloudError,
-  ContentItem,
-  ContentType,
-  DeliveryClient,
-  SortOrder,
-  TaxonomyGroup,
-} from 'kentico-cloud-delivery';
+import { CloudError } from 'kentico-cloud-core';
+import { ContentItem, ContentType, DeliveryClient, SortOrder, TaxonomyGroup } from 'kentico-cloud-delivery';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -63,8 +57,6 @@ export class AppComponent implements OnInit, OnDestroy {
         takeUntil(this.ngUnsubscribe)
       )
       .subscribe(response => {
-        console.log(response);
-        console.log(response.item.stars[0].firstName.text);
       });
 
     // get 'top 3' latest movies
@@ -79,7 +71,6 @@ export class AppComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         response => {
-          console.log(response);
           this.latestMovies = response.items;
         },
         error => this.handleCloudError(error)
@@ -94,7 +85,6 @@ export class AppComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         response => {
-          console.log(response);
           this.actor = response.item;
         },
         error => this.handleCloudError(error)
@@ -124,7 +114,6 @@ export class AppComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         response => {
-          console.log(response);
           this.types = response.types;
         },
         error => this.handleCloudError(error)
@@ -139,7 +128,6 @@ export class AppComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         response => {
-          console.log(response);
           this.taxonomies = response.taxonomies;
         },
         error => this.handleCloudError(error)

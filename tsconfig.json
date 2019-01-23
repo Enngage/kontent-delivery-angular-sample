@@ -3,23 +3,23 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": ".", // This must be specified if "paths" is.
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
     ],
     "paths": {
       "kentico-cloud-delivery": [
-        "node_modules/kentico-cloud-delivery/_bundles/kentico-cloud-delivery-sdk.browser.umd.min.js"
+        "node_modules/kentico-cloud-delivery/_bundles/kentico-cloud-delivery-sdk.browser.umd.min.js",
       ]
     },
     "lib": [
       "es2017",
       "dom"
-    ]
-  }
+    ],
+  },
 }
