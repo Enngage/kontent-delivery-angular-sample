@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
    * Usage: use 'takeUntil(this.ngUnsubscribe)' for all subscriptions.
    * Example: this.myThingService.getThings()
    *       .takeUntil(this.ngUnsubscribe)
-   *      .subscribe(things => console.log(things));
+   *       .subscribe(things => console.log(things));
    */
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
