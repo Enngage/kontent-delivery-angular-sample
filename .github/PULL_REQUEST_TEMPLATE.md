@@ -10,7 +10,7 @@ If no issue exists, what is the fix or new feature? Were there any reasons to fi
 - [ ] Automated tests have been added
 - [ ] Tests are passing
 - [ ] Docs have been updated (if applicable)
-- [ ] Temporary settings (e.g. project ID used during development and testing) have been reverted to defaults
+- [ ] Temporary settings (e.g. variables used during development and testing) have been reverted to defaults
 
 ### How to test
 
