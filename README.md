@@ -11,7 +11,7 @@ npm i
 ```
 
 ```
-ng server
+ng serve
 ```
 
 ## Publishing to GitHub pages
