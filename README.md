@@ -1,6 +1,6 @@
-This is an example Angular 7 application using [kentico-cloud-delivery](https://github.com/Enngage/kentico-cloud-js) javascript sdk.
+This is an example Angular 7 application using [kentico-cloud-delivery](https://github.com/Kentico/kontent-delivery-sdk-js) javascript sdk.
 
-See [live demo](https://enngage.github.io/KenticoCloudSampleAngularApp/) on Github pages. 
+See [live demo](https://enngage.github.io/KenticoKontentSampleAngularApp/) on Github pages. 
 
 ## Quickstart
 
