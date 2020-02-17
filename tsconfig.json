@@ -1,25 +1,26 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
-    "baseUrl": ".", // This must be specified if "paths" is.
     "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
     "typeRoots": [
-      "node_modules/@types",
+      "node_modules/@types"
     ],
-    "paths": {
-      "kentico-cloud-delivery": [
-        "node_modules/kentico-cloud-delivery/_bundles/kentico-cloud-delivery-sdk.browser.umd.min.js",
-      ]
-    },
     "lib": [
-      "es2017",
+      "es2018",
       "dom"
-    ],
+    ]
   },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
 }
