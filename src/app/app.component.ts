@@ -1,103 +1,130 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ContentItem, ContentType, SortOrder, TaxonomyGroup } from '@kentico/kontent-delivery';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import {
+  IDeliveryClient,
+  createDeliveryClient,
+  INetworkResponse,
+  Responses,
+  IGroupedNetworkResponse,
+} from '@kentico/kontent-delivery';
+import { AngularHttpService } from '@kentico/kontent-angular-http-service';
+import { HttpClient } from '@angular/common/http';
+import { ThrowStmt } from '@angular/compiler';
+import { Observable, from } from 'rxjs';
+import { observableHelper } from './helpers/observable.helper';
 import { map } from 'rxjs/operators';
-import { KontentService } from 'src/kontent/kontent-service';
-import { Actor } from 'src/kontent/models/actor';
-import { Movie } from 'src/kontent/models/movie';
-
-import { BaseComponent } from './base/base.component';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.sass'],
 })
-export class AppComponent extends BaseComponent implements OnInit {
-    readonly title = 'Kentico Kontent Angular Sample';
+export class AppComponent {
+  title = 'kontent-angular-sample';
 
-    public reloadedTimestamp?: string;
-    public error?: string;
-    private readonly actorType = 'actor';
-    private readonly movieType = 'movie';
+  deliveryClient: IDeliveryClient;
 
-    public latestMovies?: Movie[];
-    public actor?: Actor;
-    public types?: ContentType[];
-    public variousItems?: ContentItem[];
-    public taxonomies?: TaxonomyGroup[];
+  itemsResponse?: INetworkResponse<Responses.IListContentItemsResponse, any>;
+  itemResponse?: INetworkResponse<Responses.IViewContentItemResponse, any>;
+  taxonomiesResponse?: INetworkResponse<Responses.IListTaxonomiesResponse, any>;
+  taxonomyResponse?: INetworkResponse<Responses.IViewTaxonomyResponse, any>;
+  typesResponse?: INetworkResponse<Responses.IListContentTypesResponse, any>;
+  typeResponse?: INetworkResponse<Responses.IViewContentTypeResponse, any>;
+  languagesResponse?: INetworkResponse<Responses.IListLanguagesResponse, any>;
+  elementResponse?: INetworkResponse<
+    Responses.IViewContentTypeElementResponse,
+    any
+  >;
+  itemsFeedResponse?: IGroupedNetworkResponse<Responses.IListItemsFeedAllResponse>;
 
-    constructor(kontentService: KontentService, cdr: ChangeDetectorRef) {
-        super(kontentService, cdr);
-    }
+  constructor(httpClient: HttpClient, private cdr: ChangeDetectorRef) {
+    this.deliveryClient = createDeliveryClient({
+      projectId: 'da5abe9f-fdad-4168-97cd-b3464be2ccb9',
+      httpService: new AngularHttpService(httpClient),
+    });
+  }
 
-    ngOnInit(): void {
-        super.ngOnInit();
-        this.loadData();
-    }
+  ngOnInit(): void {
+    this.initData();
+  }
 
-    loadData(): void {
-        this.setTimestamp();
+  private initData(): void {
+    this.zipAndExecute([
+      // items
+      from(this.deliveryClient.items().depthParameter(2).toPromise()).pipe(
+        map((response) => {
+          this.itemsResponse = response;
+          this.cdr.markForCheck();
+        })
+      ),
+      // item
+      from(
+        this.deliveryClient.item('warrior').depthParameter(2).toPromise()
+      ).pipe(
+        map((response) => {
+          this.itemResponse = response;
+          this.cdr.markForCheck();
+        })
+      ),
+      // taxonomies
+      from(this.deliveryClient.taxonomies().toPromise()).pipe(
+        map((response) => {
+          this.taxonomiesResponse = response;
+          this.cdr.markForCheck();
+        })
+      ),
+      // taxonomy
+      from(this.deliveryClient.taxonomy('movietype').toPromise()).pipe(
+        map((response) => {
+          this.taxonomyResponse = response;
+          this.cdr.markForCheck();
+        })
+      ),
+      // types
+      from(this.deliveryClient.types().toPromise()).pipe(
+        map((response) => {
+          this.typesResponse = response;
+          this.cdr.markForCheck();
+        })
+      ),
+      // type
+      from(this.deliveryClient.type('movie').toPromise()).pipe(
+        map((response) => {
+          this.typeResponse = response;
+          this.cdr.markForCheck();
+        })
+      ),
+      // languages
+      from(this.deliveryClient.languages().toPromise()).pipe(
+        map((response) => {
+          this.languagesResponse = response;
+          this.cdr.markForCheck();
+        })
+      ),
+      // element
+      from(this.deliveryClient.element('movie', 'title').toPromise()).pipe(
+        map((response) => {
+          this.elementResponse = response;
+          this.cdr.markForCheck();
+        })
+      ),
+      // items feed
+      from(this.deliveryClient.itemsFeed().toAllPromise()).pipe(
+        map((response) => {
+          this.itemsFeedResponse = response;
+          this.cdr.markForCheck();
+        })
+      ),
+    ]);
+  }
 
-        super.resolveObservables([
-            // gets 'top 3' latest movies
-            this.kontentService.deliveryClient
-                .items<Movie>()
-                .type(this.movieType)
-                .limitParameter(3)
-                .orderParameter('elements.title', SortOrder.desc)
-                .toObservable()
-                .pipe(
-                    map(response => {
-                        console.log(response.items);
-                        this.latestMovies = response.items;
-                    })
-                ),
-            // taxonomies
-            this.kontentService.deliveryClient
-                .taxonomies()
-                .toObservable()
-                .pipe(
-                    map(response => {
-                        console.log(response.taxonomies);
-                        this.taxonomies = response.taxonomies;
-                    })
-                ),
-            // get single item of 'Character' type
-            this.kontentService.deliveryClient
-                .item<Actor>('tom_hardy')
-                .toObservable()
-                .pipe(
-                    map(response => {
-                        console.log(response.item);
-                        this.actor = response.item;
-                    })
-                ),
-            this.kontentService.deliveryClient
-                .types()
-                .toObservable()
-                .pipe(
-                    map(response => {
-                        console.log(response.types);
-                        this.types = response.types;
-                    })
-                ),
-            this.kontentService.deliveryClient
-                .items<ContentItem>()
-                .toObservable()
-                .pipe(
-                    map(response => {
-                        console.log(response.items);
-                        this.variousItems = response.items;
-                    })
-                )
-        ]);
-    }
-
-    private setTimestamp(): void {
-        this.reloadedTimestamp = new Date().toLocaleString();
-    }
-
-    getTaxonomyTerms(taxonomy: TaxonomyGroup): string {
-        return taxonomy.terms.map(term => term.name).join(', ');
-    }
+  private zipAndExecute(observables: Observable<void>[]): void {
+    observableHelper
+      .zipObservables(observables)
+      .pipe(
+        map(() => {
+          this.cdr.markForCheck();
+        })
+      )
+      .subscribe();
+  }
 }
