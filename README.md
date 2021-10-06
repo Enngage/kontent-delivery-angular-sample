@@ -9,3 +9,10 @@ This is a sample Angular application showing the use of [@kentico/kontent-delive
 - Run `npm start`
 
 
+## Publishing demo app
+Under root, generate demo app with
+
+```
+npm run build-demo-gh-pages
+npx ngh --dir=dist
+```

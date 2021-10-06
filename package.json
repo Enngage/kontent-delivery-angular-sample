@@ -1,13 +1,18 @@
 {
   "name": "kontent-angular-sample",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Enngage/kontent-delivery-angular-sample"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "release": "standard-version"
+    "release": "standard-version",
+    "build-demo-gh-pages": "npm run ng build -- --prod"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +32,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "angular-cli-ghpages": "1.0.0-rc.2",
     "standard-version": "9.1.0",
     "@angular-devkit/build-angular": "~12.2.8",
     "@angular/cli": "~12.2.8",
