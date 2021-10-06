@@ -1,12 +1,14 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
+      imports: [BrowserModule, HttpClientModule, NgxJsonViewerModule],
     }).compileComponents();
   });
 
@@ -16,16 +18,23 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'kontent-angular-sample'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('kontent-angular-sample');
-  });
-
-  it('should render title', () => {
+  it(`should have responses set`, async () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('kontent-angular-sample app is running!');
+    const app = fixture.componentInstance;
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      console.log(app);
+      expect(app.itemsResponse).toBeDefined();
+      expect(app.itemResponse).toBeDefined();
+      expect(app.taxonomyResponse).toBeDefined();
+      expect(app.taxonomiesResponse).toBeDefined();
+      expect(app.languagesResponse).toBeDefined();
+      expect(app.typeResponse).toBeDefined();
+      expect(app.typeResponse).toBeDefined();
+      expect(app.itemsFeedResponse).toBeDefined();
+      expect(app.elementResponse).toBeDefined();
+    });
   });
 });

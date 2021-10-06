@@ -11,8 +11,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:once": "ng test --watch=false",
     "release": "standard-version",
-    "build-demo-gh-pages": "npm run ng build -- --prod"
+    "build-demo-gh-pages": "npm run ng build -- --prod",
+    "build:all": "npm run build",
+    "test:all": "npm run test:once"
   },
   "private": true,
   "dependencies": {

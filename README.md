@@ -1,3 +1,5 @@
+[![Discord](https://img.shields.io/discord/821885171984891914?label=Discord&logo=Discord&logoColor=white)](https://discord.gg/SKCxwPtevJ)
+
 # Kontent Angular Sample app
 
 This is a sample Angular application showing the use of [@kentico/kontent-delivery](https://github.com/Kentico/kontent-delivery-sdk-js) SDK with a [Kontent Angular Http Service](https://github.com/Kentico/kontent-angular-http-service) for HTTP calls. 
